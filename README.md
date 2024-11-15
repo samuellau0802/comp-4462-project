@@ -1,74 +1,77 @@
-# Getting Started with Create React App
+# COMP 4462 Project
+This project is a web application that visualizes macro-economic indicators using a choropleth map and line charts. The application allows users to select year ranges and indicators to explore data interactively.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
 
-## Get started
-To install all the dependencies, please run `npm install`.
+To run the project locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/samuellau0802/comp-4462-project.git
+   cd COMP-4462-project
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+
+Visit `http://localhost:3000` in your browser to view the application.
 
 
-## Available Scripts
 
-In the project directory, you can run:
+## File structure
 
-### `npm start`
+```plaintext
+COMP-462-PROJECT/
+│
+├── node_modules/            # Contains all the npm dependencies for the project.
+│
+├── public/                  # Publicly accessible files.
+│
+├── src/                     # Source code for the React application.
+│   ├── components/          # React components for reusable UI elements.
+│   │   ├── ChoroplethMap.js # Component for rendering the choropleth map.
+│   │   ├── LineChart.js     # Component for rendering line charts.
+│   │   ├── YearRangeSlider.js# Component for the year range slider.
+│   │   └── ...              # Other components can be added here.
+│   │
+│   ├── data/                # Contains JSON data files used in the application.
+│   │   ├── countries_data.json # JSON file containing country-specific economic data.
+│   │   └── world-110m.json     # JSON file containing countries geometric data. From https://unpkg.com/browse/world-atlas@2.0.2/countries-110m.json
+│   │
+│   ├── App.css              # CSS styles for the main App component.
+│   ├── App.js               # Main application component that renders the UI.
+│   ├── index.js             # Entry point for the React application.
+│   ├── reportWebVitals.js   # Utility for measuring performance in the app.
+│   ├── setupTests.js        # Setup for testing utilities.
+│   ├── package.json         # Project metadata and dependencies.
+│   ├── package-lock.json    # Locked versions of project dependencies.
+│   └── .gitignore           # Specifies files and directories to ignore in Git.
+│
+└── README.md                # This README file.
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Overview of Key Files and Directories
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **node_modules/**: Contains all the dependencies installed via npm. It is generated automatically and should not be modified directly.
 
-### `npm test`
+- **public/**: This directory holds static files such as `index.html` and images. The files in this folder are served directly by the web server.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **src/**: This is where the source code of the application resides.
+  - **components/**: This folder contains React components used throughout the application. Each component is responsible for a specific piece of functionality or UI.
+  - **data/**: This folder includes JSON files that store data used by the application for visualization and other purposes.
 
-### `npm run build`
+- **App.js**: The main component that combines all other components and manages the application state.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **index.js**: The entry point of the React application, where the root component is rendered into the DOM.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **App.css**: Contains styles for the main application component.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **package.json**: Contains metadata about the project, including dependencies and scripts.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
