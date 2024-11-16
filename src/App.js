@@ -12,22 +12,13 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import LineChartComponent from "./components/LineChart";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
-}));
 
 const App = () => {
-  const [maxYearRange, setMaxYearRange] = useState([1960, 2020]);
-  const [curYearRange, setCurYearRange] = useState([1960, 2020]);
+  const [maxYearRange, setMaxYearRange] = useState([2008, 2023]);
+  const [curYearRange, setCurYearRange] = useState([2008, 2023]);
   const [indicator, setIndicator] = useState("");
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [mapSize, setMapSize] = useState('large');
 
   const handleYearRangeChange = (newRange) => {
     setCurYearRange(newRange);
@@ -42,11 +33,15 @@ const App = () => {
     // You can add logic here to update the map
     // console.log("IndicatorYear Range changed");
     // Add your map update logic here
+    // if (selectedCountry && indicator && curYearRange) {
+    //   setMapSize('small');
+    // }
+    
   }, [indicator, curYearRange, selectedCountry]);
 
   return (
     <div className="App" style={{paddingTop: "50px"}}>
-      <Container maxWidth="lg">
+      <Container maxWidth="sm">
         <Grid container spacing={4}>
           <Grid size={10}>
             <FormControl fullWidth>
@@ -58,9 +53,9 @@ const App = () => {
                 label="Indicator"
                 onChange={handleIndicatorChange}
               >
-                <MenuItem value="GDP">GDP</MenuItem>
-                <MenuItem value="Indicator2">Indicator2</MenuItem>
-                <MenuItem value="Indicator3">Indicator3</MenuItem>
+                <MenuItem value="GDP growth (annual %)">GDP growth (annual %)</MenuItem>
+                {/* <MenuItem value="Indicator2">Indicator2</MenuItem>
+                <MenuItem value="Indicator3">Indicator3</MenuItem> */}
               </Select>
             </FormControl>
           </Grid>
@@ -76,6 +71,7 @@ const App = () => {
           yearRange={curYearRange} 
           indicator={indicator} 
           onClick={(country) => setSelectedCountry(country)}
+          style={{ width: mapSize === 'large' ? '100%' : '50%', height: 'auto' }} 
           />
 
         {selectedCountry && ( // Only show LineChart if a country is selected

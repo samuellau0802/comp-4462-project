@@ -22,7 +22,7 @@ const computeCorrelation = (country, yearRange, indicator1, indicator2) => {
           const indicatorValue1 = data[country][year][indicator1];
           const indicatorValue2 = data[country][year][indicator2];
 
-          if (indicatorValue1 !== undefined && indicatorValue2 !== undefined) {
+          if (indicatorValue1 !== "NaN" && indicatorValue2 !== "NaN") {
               values1.push(indicatorValue1);
               values2.push(indicatorValue2);
           }
@@ -46,19 +46,17 @@ const computeCorrelation = (country, yearRange, indicator1, indicator2) => {
 };
 
 
-const ChoroplethMap = ({ yearRange, indicator, onClick }) => {
+const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
   // Create a color scale using d3 for the choropleth
   const colorScale = d3.scaleSequential(d3.interpolateRdYlGn).domain([-1, 1]);
 
 
   // Create a color scale legend
-  const legendWidth = 500;
-  const legendHeight = 20;
   const gradientId = 'colorGradient';
 
   return (
-    <div style={{ position: 'relative', textAlign: 'center' }}>
-      <ComposableMap projection="geoEqualEarth">
+    <div style={{ position: 'relative', textAlign: 'center', ...style }}>
+      <ComposableMap projection="geoMercator">
         <Geographies geography={geodata}>
           {({ geographies }) =>
             geographies.map((geo) => {
@@ -103,17 +101,17 @@ const ChoroplethMap = ({ yearRange, indicator, onClick }) => {
           }
         </Geographies>
       </ComposableMap>
-      <div style={{ position: 'absolute', bottom: 20, right: 20 }}>
-        <svg width={legendWidth} height={legendHeight + 20}>
+      <div style={{ position: 'absolute', bottom: '0px', right: '20px', width: '30%', height: 'auto' }}>
+        <svg viewBox="0 0 100 20" preserveAspectRatio="xMinYMin meet" style={{ width: '100%', height: 'auto' }}>
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style={{ stopColor: d3.interpolateRdYlGn(-1), stopOpacity: 1 }} />
               <stop offset="100%" style={{ stopColor: d3.interpolateRdYlGn(1), stopOpacity: 1 }} />
             </linearGradient>
           </defs>
-          <rect width={legendWidth} height={legendHeight} fill={`url(#${gradientId})`} />
-          <text x="0" y={legendHeight + 20} fontSize="16">-1</text>
-          <text x={legendWidth - 10} y={legendHeight + 20} fontSize="16">1</text>
+          <rect width="100" height="10" fill={`url(#${gradientId})`} />
+          <text x="0" y="15" fontSize="5">-1</text>
+          <text x="95" y="15" fontSize="5">1</text>
         </svg>
       </div>
       <Tooltip id="map" />
