@@ -42,7 +42,7 @@ COMP-462-PROJECT/
 │   │   └── ...              # Other components can be added here.
 │   │
 │   ├── data/                # Contains JSON data files used in the application.
-│   │   ├── countries_data.json # JSON file containing country-specific economic data.
+│   │   ├── Combined_Data_2008_2023.json # JSON file containing country-specific economic data.
 │   │   └── world-110m.json     # JSON file containing countries geometric data. From https://unpkg.com/browse/world-atlas@2.0.2/countries-110m.json
 │   │
 │   ├── App.css              # CSS styles for the main App component.

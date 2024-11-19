@@ -8,8 +8,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid2';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import LineChartComponent from "./components/LineChart";
 
 
@@ -41,7 +39,7 @@ const App = () => {
 
   return (
     <div className="App" style={{paddingTop: "50px"}}>
-      <Container maxWidth="sm">
+      <Container maxWidth="lg">
         <Grid container spacing={4}>
           <Grid size={10}>
             <FormControl fullWidth>
@@ -54,8 +52,11 @@ const App = () => {
                 onChange={handleIndicatorChange}
               >
                 <MenuItem value="GDP growth (annual %)">GDP growth (annual %)</MenuItem>
-                {/* <MenuItem value="Indicator2">Indicator2</MenuItem>
-                <MenuItem value="Indicator3">Indicator3</MenuItem> */}
+                <MenuItem value="FX Reserves">FX Reserves</MenuItem>
+                <MenuItem value="Government Debt-to-GDP">Government Debt-to-GDP</MenuItem>
+                <MenuItem value="Balance of Trade">Balance of Trade</MenuItem>
+                <MenuItem value="Inflation">Inflation</MenuItem>
+                <MenuItem value="Unemployment Rate">Unemployment Rate</MenuItem>
               </Select>
             </FormControl>
           </Grid>
