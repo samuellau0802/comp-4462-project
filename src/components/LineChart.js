@@ -9,8 +9,7 @@ import {
     Legend,
     ResponsiveContainer
 } from 'recharts';
-import data from '../data/countries_data.json';
-import { Container } from '@mui/material';
+import data from '../data/countries_data_2008_2023.json';
 
 // Function to extract data for the specified country and indicators
 const getDataForCountry = (country, yearRange, indicator1, indicator2) => {

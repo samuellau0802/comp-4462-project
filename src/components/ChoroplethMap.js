@@ -2,7 +2,7 @@ import React from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import * as d3 from 'd3';
 import { Tooltip } from 'react-tooltip';
-import data from '../data/countries_data.json';
+import data from '../data/countries_data_2008_2023.json';
 import geodata from '../data/world-110m.json';
 
 
@@ -13,7 +13,7 @@ const computeCorrelation = (country, yearRange, indicator1, indicator2) => {
 
   // Check if the specified country exists in the data
   if (!data[country]) {
-      return 0;
+      return NaN;
   }
 
   // Loop through the specified year range for the given country
@@ -30,7 +30,7 @@ const computeCorrelation = (country, yearRange, indicator1, indicator2) => {
   }
 
   // Calculate the correlation coefficient
-  if (values1.length === 0 || values2.length === 0) return 0;
+  if (values1.length === 0 || values2.length === 0) return NaN;
 
   const n = values1.length;
   const sum1 = values1.reduce((a, b) => a + b, 0);
@@ -69,20 +69,20 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
                   geography={geo}
                   style={{
                     default: {
-                      fill: colorScale(indicatorValue),
+                      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue), // Light gray for NaN
                       outline: 'none',
                       stroke: '#000000',
                       strokeWidth: 0.5,
                     },
                     hover: {
-                      fill: colorScale(indicatorValue),
+                      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue),
                       fillOpacity: 0.7,
                       outline: 'none',
                       stroke: '#000000',
                       strokeWidth: 0.5,
                     },
                     pressed: {
-                      fill: colorScale(indicatorValue),
+                      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue),
                       outline: 'none',
                       stroke: '#000000',
                       strokeWidth: 0.5,
@@ -90,6 +90,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
                   }}
                   onClick={() => {
                     if (onClick) {
+                      console.log(indicatorValue);
                       onClick(countryName); // Call the onClick function passed from the parent
                   }
                   }}

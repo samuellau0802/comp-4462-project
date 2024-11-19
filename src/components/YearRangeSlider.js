@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
 
-const minDistance = 10;
+const minDistance = 5;
 
 export default function YearRangeSlider({ startYear, endYear, onChange }) {
   const [curYearRange, setCurYearRange] = React.useState([startYear, endYear]);
