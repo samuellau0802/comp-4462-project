@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     LineChart,
     Line,
@@ -40,34 +40,29 @@ const getDataForCountry = (country, yearRange, indicator1, indicator2) => {
 };
 
 // LineChartComponent to visualize the data
-
-
 const LineChartComponent = ({ country, yearRange, indicator1, indicator2 }) => {
-    const chartData = getDataForCountry(country, yearRange, indicator1, indicator2);
-
-    console.log(chartData);
+    const chartData = useMemo(() => getDataForCountry(country, yearRange, indicator1, indicator2), [country, yearRange, indicator1, indicator2]);
 
     return (
         <div>
             <h3>{`Line Chart for ${country}: ${indicator1} and ${indicator2} (${yearRange[0]} - ${yearRange[1]})`}</h3>
-            <div style={{height: "400px", width: "100%"}}>
-            {chartData.length > 0 ? ( 
-                 <ResponsiveContainer width="100%" height={400}>
-                    <LineChart data={chartData}>
-                        <CartesianGrid/>
-                        <XAxis dataKey="year" />
-                        <YAxis yAxisId="left" />
-                        <YAxis yAxisId="right" orientation="right" />
-                        <Tooltip />
-                        <Legend />
-                        <Line connectNulls yAxisId="left" type="monotone" dataKey={indicator1} stroke="#8884d8"  />
-                        <Line connectNulls yAxisId="right" type="monotone" dataKey={indicator2} stroke='#82ca9d' />
-                    </LineChart>
-
-                </ResponsiveContainer>
-            ) : (
-                <p>No data available for the specified range.</p>
-            )}
+            <div style={{ height: "400px", width: "100%" }}>
+                {chartData.length > 0 ? (
+                    <ResponsiveContainer width="100%" height={400}>
+                        <LineChart data={chartData}>
+                            <CartesianGrid />
+                            <XAxis dataKey="year" />
+                            <YAxis yAxisId="left" />
+                            <YAxis yAxisId="right" orientation="right" />
+                            <Tooltip />
+                            <Legend />
+                            <Line connectNulls yAxisId="left" type="monotone" dataKey={indicator1} stroke="#8884d8" />
+                            <Line connectNulls yAxisId="right" type="monotone" dataKey={indicator2} stroke='#82ca9d' />
+                        </LineChart>
+                    </ResponsiveContainer>
+                ) : (
+                    <p>No data available for the specified range.</p>
+                )}
             </div>
         </div>
     );
