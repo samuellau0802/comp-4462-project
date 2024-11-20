@@ -10,50 +10,44 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
   const colorScale = useMemo(() => d3.scaleSequential(d3.interpolateRdYlGn).domain([-1, 1]), []);
 
   // Extract styles into a function
-  const getGeographyStyle = useCallback(
-    (indicatorValue) => ({
-      default: {
-        fill: isNaN(indicatorValue) ? '#d3d3d3' : colorScale(indicatorValue),
-        outline: 'none',
-        stroke: '#000000',
-        strokeWidth: 0.5,
-      },
-      hover: {
-        fill: isNaN(indicatorValue) ? '#d3d3d3' : colorScale(indicatorValue),
-        fillOpacity: 0.7,
-        outline: 'none',
-        stroke: '#000000',
-        strokeWidth: 0.5,
-      },
-      pressed: {
-        fill: isNaN(indicatorValue) ? '#d3d3d3' : colorScale(indicatorValue),
-        outline: 'none',
-        stroke: '#000000',
-        strokeWidth: 0.5,
-      },
-    }),
-    [colorScale]
-  );
+  const getGeographyStyle = useCallback((indicatorValue) => ({
+    default: {
+      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue),
+      outline: 'none',
+      stroke: '#000000',
+      strokeWidth: 0.5,
+    },
+    hover: {
+      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue),
+      fillOpacity: 0.7,
+      outline: 'none',
+      stroke: '#000000',
+      strokeWidth: 0.5,
+    },
+    pressed: {
+      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue),
+      outline: 'none',
+      stroke: '#000000',
+      strokeWidth: 0.5,
+    },
+  }), [colorScale]);
 
   // Memoize the renderGeography function
-  const renderGeography = useCallback(
-    (geo) => {
-      const countryName = geo.properties.name;
-      const indicatorValue = computeCorrelation(countryName, yearRange, 'Stock Price', indicator);
+  const renderGeography = useCallback((geo) => {
+    const countryName = geo.properties.name;
+    const indicatorValue = computeCorrelation(countryName, yearRange, "Stock Price", indicator);
 
-      return (
-        <Geography
-          key={geo.rsmKey}
-          geography={geo}
-          style={getGeographyStyle(indicatorValue)}
-          onClick={() => onClick && onClick(countryName)}
-          data-tooltip-id="map"
-          data-tooltip-content={`${countryName}: ${indicatorValue}`}
-        />
-      );
-    },
-    [yearRange, indicator, onClick, getGeographyStyle]
-  );
+    return (
+      <Geography
+        key={geo.rsmKey}
+        geography={geo}
+        style={getGeographyStyle(indicatorValue)}
+        onClick={() => onClick && onClick(countryName, indicatorValue.toFixed(3))}
+        data-tooltip-id="map"
+        data-tooltip-content={`${countryName}: ${indicatorValue.toFixed(3)}`}
+      />
+    );
+  }, [yearRange, indicator, onClick, getGeographyStyle]);
 
   // State for managing zoom and center position
   const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
@@ -63,7 +57,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
     setPosition(newPosition);
   }, []);
 
-  // Optional: Reset zoom to default
+  // Function to reset zoom and center
   const handleReset = () => {
     setPosition({ coordinates: [0, 0], zoom: 1 });
   };
@@ -83,7 +77,8 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
-      {/* Reset Zoom Button */}
+      
+      {/* Optional: Reset Zoom Button */}
       <button
         onClick={handleReset}
         style={{
@@ -99,6 +94,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
       >
         Reset Zoom
       </button>
+
       {/* Legend */}
       <div style={{ position: 'absolute', bottom: '0px', right: '20px', width: '30%', height: 'auto' }}>
         <svg viewBox="0 0 100 20" preserveAspectRatio="xMinYMin meet" style={{ width: '100%', height: 'auto' }}>
@@ -113,6 +109,8 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
           <text x="95" y="15" fontSize="5">1</text>
         </svg>
       </div>
+
+      {/* Tooltip */}
       <Tooltip id="map" />
     </div>
   );
