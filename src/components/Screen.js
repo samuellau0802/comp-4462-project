@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import YearRangeSlider from "./YearRangeSlider";
 import '../App.css';
 import ChoroplethMap from "./ChoroplethMap";
