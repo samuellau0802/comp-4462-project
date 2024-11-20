@@ -42,9 +42,9 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
         key={geo.rsmKey}
         geography={geo}
         style={getGeographyStyle(indicatorValue)}
-        onClick={() => onClick && onClick(countryName)}
+        onClick={() => onClick && onClick(countryName, indicatorValue.toFixed(3))}
         data-tooltip-id="map"
-        data-tooltip-content={`${countryName}: ${indicatorValue}`}
+        data-tooltip-content={`${countryName}: ${indicatorValue.toFixed(3)}`}
       />
     );
   }, [yearRange, indicator, onClick, getGeographyStyle]);

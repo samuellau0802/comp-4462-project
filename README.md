@@ -23,6 +23,11 @@ To run the project locally, follow these steps:
 
 Visit `http://localhost:3000` in your browser to view the application.
 
+## Deploy to github pages
+To deploy to github pages, please run the following command,
+```bash
+npm run deploy -- -m "Deploy React app to GitHub Pages"
+```
 
 
 ## File structure
