@@ -44,20 +44,50 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2 }) => {
     const chartData = useMemo(() => getDataForCountry(country, yearRange, indicator1, indicator2), [country, yearRange, indicator1, indicator2]);
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#121212', padding: '20px', borderRadius: '8px', color: '#e0e0e0' }}>
             <h3>{`Line Chart for ${country}: ${indicator1} and ${indicator2} (${yearRange[0]} - ${yearRange[1]})`}</h3>
             <div style={{ height: "400px", width: "100%" }}>
                 {chartData.length > 0 ? (
                     <ResponsiveContainer width="100%" height={400}>
                         <LineChart data={chartData}>
-                            <CartesianGrid />
-                            <XAxis dataKey="year" />
-                            <YAxis yAxisId="left" />
-                            <YAxis yAxisId="right" orientation="right" />
-                            <Tooltip />
-                            <Legend />
-                            <Line connectNulls yAxisId="left" type="monotone" dataKey={indicator1} stroke="#8884d8" />
-                            <Line connectNulls yAxisId="right" type="monotone" dataKey={indicator2} stroke='#82ca9d' />
+                            <CartesianGrid stroke="#3a3a3b" strokeDasharray="3 3" />
+                            <XAxis dataKey="year" stroke="#e0e0e0" />
+                            <YAxis yAxisId="left" stroke="#e0e0e0" />
+                            <YAxis yAxisId="right" orientation="right" stroke="#e0e0e0" />
+                            <Tooltip
+                                contentStyle={{
+                                    backgroundColor: '#1d1d1f',
+                                    borderColor: '#3a3a3b',
+                                    color: '#e0e0e0',
+                                }}
+                                itemStyle={{ color: '#e0e0e0' }}
+                                labelStyle={{ color: '#82aaff' }}
+                            />
+                            <Legend
+                                wrapperStyle={{
+                                    color: '#e0e0e0',
+                                }}
+                            />
+                            <Line
+                                connectNulls
+                                yAxisId="left"
+                                type="monotone"
+                                dataKey={indicator1}
+                                stroke="#82aaff"
+                                strokeWidth={2}
+                                dot={{ fill: '#82aaff', r: 4 }}
+                                activeDot={{ r: 6 }}
+                            />
+                            <Line
+                                connectNulls
+                                yAxisId="right"
+                                type="monotone"
+                                dataKey={indicator2}
+                                stroke='#4caf50'
+                                strokeWidth={2}
+                                dot={{ fill: '#4caf50', r: 4 }}
+                                activeDot={{ r: 6 }}
+                            />
                         </LineChart>
                     </ResponsiveContainer>
                 ) : (

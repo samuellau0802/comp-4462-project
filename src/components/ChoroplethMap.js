@@ -12,22 +12,22 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
   // Extract styles into a function
   const getGeographyStyle = useCallback((indicatorValue) => ({
     default: {
-      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue),
+      fill: isNaN(indicatorValue) ? "#4a4a4a" : colorScale(indicatorValue), // Dark gray for no data
       outline: 'none',
-      stroke: '#000000',
-      strokeWidth: 0.5,
+      stroke: '#1e1e1f', // Subtle border
+      strokeWidth: 0.3,
     },
     hover: {
-      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue),
-      fillOpacity: 0.7,
+      fill: isNaN(indicatorValue) ? "#6a6a6a" : colorScale(indicatorValue),
+      fillOpacity: 0.8,
       outline: 'none',
-      stroke: '#000000',
+      stroke: '#ffffff', // Highlight border on hover
       strokeWidth: 0.5,
     },
     pressed: {
-      fill: isNaN(indicatorValue) ? "#d3d3d3" : colorScale(indicatorValue),
+      fill: isNaN(indicatorValue) ? "#6a6a6a" : colorScale(indicatorValue),
       outline: 'none',
-      stroke: '#000000',
+      stroke: '#ffffff',
       strokeWidth: 0.5,
     },
   }), [colorScale]);
@@ -63,7 +63,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
   };
 
   return (
-    <div style={{ position: 'relative', textAlign: 'center', ...style }}>
+    <div style={{ position: 'relative', textAlign: 'center', backgroundColor: '#121212', padding: '10px', borderRadius: '8px', ...style }}>
       <ComposableMap projection="geoMercator">
         <ZoomableGroup
           center={position.coordinates}
@@ -77,26 +77,37 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
-      
-      {/* Optional: Reset Zoom Button */}
+
+      {/* Reset Zoom Button */}
       <button
         onClick={handleReset}
         style={{
           position: 'absolute',
           top: '10px',
           left: '10px',
-          padding: '5px 10px',
-          background: '#fff',
-          border: '1px solid #ccc',
-          borderRadius: '3px',
+          padding: '8px 12px',
+          backgroundColor: '#1d1d1f',
+          color: '#e0e0e0',
+          border: '1px solid #3a3a3b',
+          borderRadius: '5px',
           cursor: 'pointer',
+          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
+          transition: 'background-color 0.3s ease, color 0.3s ease',
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.backgroundColor = '#82aaff';
+          e.target.style.color = '#ffffff';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.backgroundColor = '#1d1d1f';
+          e.target.style.color = '#e0e0e0';
         }}
       >
         Reset Zoom
       </button>
 
       {/* Legend */}
-      <div style={{ position: 'absolute', bottom: '0px', right: '20px', width: '30%', height: 'auto' }}>
+      <div style={{ position: 'absolute', bottom: '10px', right: '20px', width: '30%', height: 'auto' }}>
         <svg viewBox="0 0 100 20" preserveAspectRatio="xMinYMin meet" style={{ width: '100%', height: 'auto' }}>
           <defs>
             <linearGradient id="colorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -105,13 +116,13 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
             </linearGradient>
           </defs>
           <rect width="100" height="10" fill="url(#colorGradient)" />
-          <text x="0" y="15" fontSize="5">-1</text>
-          <text x="95" y="15" fontSize="5">1</text>
+          <text x="0" y="15" fontSize="5" fill="#e0e0e0">-1</text>
+          <text x="95" y="15" fontSize="5" fill="#e0e0e0">1</text>
         </svg>
       </div>
 
       {/* Tooltip */}
-      <Tooltip id="map" />
+      <Tooltip id="map" style={{ backgroundColor: '#1d1d1f', color: '#e0e0e0', border: '1px solid #3a3a3b', borderRadius: '5px', padding: '5px' }} />
     </div>
   );
 };

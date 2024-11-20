@@ -1,5 +1,8 @@
+/* Base styles for Dark Mode */
 body {
   margin: 0;
+  background-color: #121212; /* Matches App background */
+  color: #e0e0e0; /* Light text for dark backgrounds */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,23 +13,25 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  background-color: #1e1e1e; /* Dark background for code */
+  color: #d1d5db; /* Light gray for code */
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 html {
   font-family: system-ui, sans-serif;
-  font-size: 1.25rem;
-}
-
-body {
-  margin: 0;
-}
-
-svg {
-  display: inline-block;
-  vertical-align: middle;
+  font-size: 16px; /* Standard, comfortable font size */
+  scroll-behavior: smooth; /* Smooth scrolling for modern UX */
 }
 
 .App {
   font-family: sans-serif;
   text-align: center;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+  fill: #e0e0e0; /* Light SVG fill for icons */
 }
