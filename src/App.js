@@ -8,20 +8,20 @@ import Screen from "./components/Screen";
 const App = () => {
   const [isSplit, setIsSplit] = useState(false);
 
-
   return (
     <div className="App" style={{ paddingTop: "50px", height: "1000px" }}>
         <Container maxWidth={false} style={{ height: "1000px" }}>
             <Button
               variant="contained"
               color="primary"
+              size="small" 
+              style={{ padding: "4px 12px" }}  // Optional custom padding
               onClick={() => setIsSplit(!isSplit)}
             > Split Screen </Button>
             <Allotment>
               <Screen />
               {isSplit && (<Screen />)}
             </Allotment>
-
       </Container>
     </div>
   );

@@ -1,8 +1,10 @@
+// Screen.js
+
 import React, { useState, useEffect, useCallback } from "react";
 import YearRangeSlider from "./YearRangeSlider";
 import '../App.css';
 import ChoroplethMap from "./ChoroplethMap";
-import { Button, Container, Card, CardContent, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material"; // Ensure Grid is imported
 import LineChartComponent from "./LineChart";
 import IndicatorDropdown from "./IndicatorDropdown";
 import { Allotment } from "allotment";
@@ -29,38 +31,24 @@ const Screen = () => {
       setSelectedCountryCorrelation(null);
     } else {
       setSelectedCountry(country);
-      if (!isNaN(correlation)) {
-        setSelectedCountryCorrelation(correlation);
+      
+      // Parse correlation to ensure it's a number
+      const numericCorrelation = parseFloat(correlation);
+      
+      if (!isNaN(numericCorrelation)) {
+        setSelectedCountryCorrelation(numericCorrelation); // Store as number
       } else {
         setSelectedCountryCorrelation(null);
       }
     }
-  }, [selectedCountry, selectedCountryCorrelation]);
-
-  const correlationCard = (
-    selectedCountryCorrelation && (
-      <Card
-        style={{
-          backgroundColor: "#1d1d1f",
-          color: "#e0e0e0",
-          border: "1px solid #3a3a3b",
-          borderRadius: "8px",
-        }}
-      >
-        <CardContent>
-          <div style={{ fontSize: "1.2em", marginBottom: "5px" }}>Correlation</div>
-          <div style={{ fontSize: "1.5em", fontWeight: "bold" }}>{selectedCountryCorrelation}</div>
-        </CardContent>
-      </Card>
-    )
-  );
+  }, [selectedCountry]);
 
   useEffect(() => {
-    // Add logic for when `indicator`, `curYearRange`, or `selectedCountry` changes if needed
+    // Add any logic needed when `indicator`, `curYearRange`, or `selectedCountry` changes
   }, [indicator, curYearRange, selectedCountry]);
 
   return (
-    <div className="App" style={{ paddingTop: "50px", height: "1000px", backgroundColor: "#121212" }}>
+    <div className="App" style={{ paddingTop: "20px", height: "1000px", backgroundColor: "#121212" }}>
       <Container style={{ height: "1000px" }}>
         <Grid container spacing={4} alignItems="center" justifyContent="center">
           <Grid item xs={8}>
@@ -86,19 +74,13 @@ const Screen = () => {
 
           {selectedCountry && (
             <Allotment.Pane preferredSize={550}>
-              <Grid container spacing={2}>
-                <Grid item xs={3}>
-                  {correlationCard}
-                </Grid>
-                <Grid item xs={9}>
-                  <LineChartComponent
-                    country={selectedCountry}
-                    yearRange={curYearRange}
-                    indicator1={"Stock Price"}
-                    indicator2={indicator}
-                  />
-                </Grid>
-              </Grid>
+              <LineChartComponent
+                country={selectedCountry}
+                yearRange={curYearRange}
+                indicator1={"Stock Price"}
+                indicator2={indicator}
+                correlation={selectedCountryCorrelation} // Passing correlation as a number
+              />
             </Allotment.Pane>
           )}
         </Allotment>

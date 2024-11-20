@@ -3,7 +3,7 @@
   text-align: center;
   background-color: #121212; /* Apple-like dark background */
   color: #e0e0e0; /* Subtle light text */
-  min-height: 100vh;
+  /* min-height: 90vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
