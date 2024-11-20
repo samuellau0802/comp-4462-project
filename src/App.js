@@ -55,7 +55,6 @@ const correlationCard = (
   )
 );
 
-
   useEffect(() => {
     // This effect will run whenever `indicator`, `curYearRange`, or `selectedCountry` changes
     // Add your map update logic here if needed
