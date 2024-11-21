@@ -61,9 +61,18 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
   const handleReset = () => {
     setPosition({ coordinates: [0, 0], zoom: 1 });
   };
+  function handleZoomIn() {
+    if (position.zoom >= 7.1) return;
+    setPosition((pos) => ({ ...pos, zoom: pos.zoom + 1 }));
+  }
+
+  function handleZoomOut() {
+    if (position.zoom <= 1.9) return;
+    setPosition((pos) => ({ ...pos, zoom: pos.zoom - 1 }));
+  }
 
   return (
-    <div style={{ position: 'relative', textAlign: 'center', backgroundColor: '#121212', padding: '10px', borderRadius: '8px', ...style }}>
+    <div style={{ position: 'relative', textAlign: 'center', backgroundColor: '#121212', padding: '20px', borderRadius: '8px', ...style }}>
       <ComposableMap projection="geoMercator">
         <ZoomableGroup
           center={position.coordinates}
@@ -105,6 +114,34 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
       >
         Reset Zoom
       </button>
+
+      <div className="controls" style={{ position: 'absolute', top: '10px', right: '20px', height: 'auto' }}>
+        <button onClick={handleZoomIn}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="3"
+          >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+        <button onClick={handleZoomOut}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="3"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+      </div>
 
       {/* Legend */}
       <div style={{ position: 'absolute', bottom: '10px', right: '20px', width: '30%', height: 'auto' }}>

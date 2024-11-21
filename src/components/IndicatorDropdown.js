@@ -31,7 +31,7 @@ const IndicatorDropdown = ({ indicator, handleIndicatorChange }) => {
     <ThemeProvider theme={darkTheme}>
       <FormControl fullWidth variant="outlined" sx={{ marginTop: 2, backgroundColor: 'background.paper', borderRadius: '8px' }}>
         <InputLabel id="select-label" sx={{ color: 'text.secondary' }}>
-          Macro-Economic Indicator
+          Indicator
         </InputLabel>
         <Select
           labelId="select-label"
