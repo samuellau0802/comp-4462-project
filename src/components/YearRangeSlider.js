@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 const minDistance = 5;
 
@@ -53,7 +54,10 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <div style={{ padding: '10px', backgroundColor: darkTheme.palette.background.paper, borderRadius: '8px' }}>
+      {/* <div style={{ padding: '10px', backgroundColor: darkTheme.palette.background.paper, borderRadius: '8px' }}> */}
+      <Typography id="input-slider" textAlign={"left"}>
+              Year
+            </Typography>
         <Slider
           getAriaLabel={() => 'Year Range'}
           value={curYearRange}
@@ -84,7 +88,7 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
             },
           }}
         />
-      </div>
+      {/* </div> */}
     </ThemeProvider>
   );
 }

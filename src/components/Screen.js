@@ -1,16 +1,16 @@
-// Screen.js
-
 import React, { useState, useEffect, useCallback } from "react";
 import YearRangeSlider from "./YearRangeSlider";
 import '../App.css';
 import ChoroplethMap from "./ChoroplethMap";
-import { Container, Grid } from "@mui/material"; // Ensure Grid is imported
+import { Container } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import LineChartComponent from "./LineChart";
 import IndicatorDropdown from "./IndicatorDropdown";
 import { Allotment } from "allotment";
+import computeCorrelation from "./Correlation";
 import "allotment/dist/style.css";
 
-const Screen = () => {
+const Screen = ({ windowHeight }) => {
   const [maxYearRange] = useState([2008, 2023]);
   const [curYearRange, setCurYearRange] = useState([2008, 2023]);
   const [indicator, setIndicator] = useState("");
@@ -19,11 +19,16 @@ const Screen = () => {
 
   const handleYearRangeChange = useCallback((newRange) => {
     setCurYearRange(newRange);
-  }, []);
+    const updatedCorrelation = computeCorrelation(selectedCountry, curYearRange, "Stock Price", indicator);
+    setSelectedCountryCorrelation(updatedCorrelation);
+  }, [selectedCountry, indicator, curYearRange]);
+
 
   const handleIndicatorChange = useCallback((event) => {
     setIndicator(event.target.value);
-  }, []);
+    const updatedCorrelation = computeCorrelation(selectedCountry, curYearRange, "Stock Price", indicator);
+    setSelectedCountryCorrelation(updatedCorrelation);
+  }, [selectedCountry, curYearRange]);
 
   const handleSelectedCountry = useCallback((country, correlation) => {
     if (selectedCountry === country) {
@@ -48,13 +53,12 @@ const Screen = () => {
   }, [indicator, curYearRange, selectedCountry]);
 
   return (
-    <div className="App" style={{ paddingTop: "20px", height: "1000px", backgroundColor: "#121212" }}>
-      <Container style={{ height: "1000px" }}>
+      <Container style={{ height: `${windowHeight}px`}}>
         <Grid container spacing={4} alignItems="center" justifyContent="center">
-          <Grid item xs={8}>
+          <Grid item size={8}>
             <IndicatorDropdown indicator={indicator} handleIndicatorChange={handleIndicatorChange} />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item size={4}>
             <YearRangeSlider
               startYear={maxYearRange[0]}
               endYear={maxYearRange[1]}
@@ -85,7 +89,6 @@ const Screen = () => {
           )}
         </Allotment>
       </Container>
-    </div>
   );
 };
 

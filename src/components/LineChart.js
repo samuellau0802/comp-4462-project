@@ -131,7 +131,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
         <Box>
             {/* Optional Chart Title */}
             <Typography variant="h6" gutterBottom>
-                {`Line Chart for ${country}: ${indicator1} and ${indicator2} (${yearRange[0]} - ${yearRange[1]})`}
+                {`${country}: ${indicator1} and ${indicator2} (${yearRange[0]} - ${yearRange[1]})`}
             </Typography>
 
             {/* Parent Container with Flex Layout */}
