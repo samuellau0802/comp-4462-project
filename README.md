@@ -14,6 +14,8 @@ To run the project locally, follow these steps:
 2. Install dependencies:
    ```bash
    npm install
+   npm install @mui/icons-material
+
    ```
 
 3. Start the development server:
