@@ -59,7 +59,7 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
     <ThemeProvider theme={darkTheme}>
       <div
         style={{
-          height: '64px', // Matches the dropdown height exactly
+          height: '45px', // Matches the dropdown height exactly
           padding: '8px 16px',
           marginTop: '16px', // Ensure spacing from the blue bar
           background: 'linear-gradient(135deg, rgba(130,170,255,0.3), rgba(187,134,252,0.3))',
@@ -111,7 +111,7 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
             },
             '.MuiSlider-markLabel': {
               color: '#b3b3b3',
-              fontSize: '0.9rem',
+              fontSize: '0.7rem',
               fontWeight: 'bold',
             },
           }}

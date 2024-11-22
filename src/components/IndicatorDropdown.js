@@ -48,6 +48,8 @@ const IndicatorDropdown = ({ indicator, handleIndicatorChange }) => {
           boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
           backdropFilter: 'blur(10px)', // Glassmorphism effect
           transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          height: '45px', // Ensures consistent thickness
+          minHeight: '64px', // Prevent shrinking
           '&:hover': {
             transform: 'scale(1.02)',
             boxShadow: '0 12px 32px rgba(0, 0, 0, 0.6)',
