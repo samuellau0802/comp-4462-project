@@ -35,3 +35,17 @@ svg {
   vertical-align: middle;
   fill: #e0e0e0; /* Light SVG fill for icons */
 }
+
+.custom-button {
+  background-color: #1d1d1f !important;
+  color: white !important;
+}
+
+.custom-button:hover {
+  background-color: #4a4a50 !important;
+}
+
+.custom-button:disabled {
+  background-color: #505055 !important;
+  color: white !important;
+}

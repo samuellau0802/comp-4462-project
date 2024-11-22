@@ -1,28 +1,41 @@
-import React, { useState} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './App.css';
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { Allotment } from "allotment";
 import "allotment/dist/style.css";
 import Screen from "./components/Screen";
+import Header from "./components/Header";
 
 const App = () => {
+  const divRef = useRef(null);
   const [isSplit, setIsSplit] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [screenSize, setScreenSize] = useState('md');
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handleSplit = () => {
+    setIsSplit(!isSplit);
+    isSplit ? setScreenSize('md') : setScreenSize('xl');
+  }
 
   return (
-    <div className="App" style={{ paddingTop: "50px", height: "1000px" }}>
-        <Container manpm start
-        xWidth={false} style={{ height: "1000px" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => setIsSplit(!isSplit)}
-            > Split Screen </Button>
-            <Allotment>
-              <Screen />
-              {isSplit && (<Screen />)}
-            </Allotment>
-
+    <div className="App" style={{height: `${windowHeight}px` }}>
+      <Header handleSplit={handleSplit} isSplit={isSplit} />
+      <Container maxWidth={screenSize} style={{ height: `${windowHeight}px` }}>
+        <Allotment>
+          <Screen windowHeight={windowHeight} />
+          {isSplit && (<Screen windowHeight={windowHeight} />)}
+        </Allotment>
       </Container>
     </div>
   );
