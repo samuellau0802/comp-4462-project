@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 
+// Minimum distance between slider values
 const minDistance = 5;
 
-// Create a dark theme
+// Create a stunning dark theme with gradients
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -13,16 +13,16 @@ const darkTheme = createTheme({
       main: '#82aaff', // Soft blue for active elements
     },
     background: {
-      default: '#121212', // Dark background
-      paper: '#1d1d1f', // Slightly lighter for components
+      default: '#121212', // Dark base
+      paper: 'rgba(18, 18, 18, 0.8)', // Glassmorphism effect
     },
     text: {
-      primary: '#e0e0e0', // Light text
-      secondary: '#b0b0b0', // Muted text
+      primary: '#ffffff', // Bright white text
+      secondary: '#b3b3b3', // Muted grey text
     },
   },
   typography: {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+    fontFamily: '"Poppins", "Roboto", "Helvetica Neue", sans-serif',
     fontSize: 14,
   },
 });
@@ -30,22 +30,25 @@ const darkTheme = createTheme({
 export default function YearRangeSlider({ startYear, endYear, onChange }) {
   const [curYearRange, setCurYearRange] = useState([startYear, endYear]);
 
-  const handleYearChange = useCallback((event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
+  const handleYearChange = useCallback(
+    (event, newValue, activeThumb) => {
+      if (!Array.isArray(newValue)) {
+        return;
+      }
 
-    const newYearRange =
-      activeThumb === 0
-        ? [Math.min(newValue[0], curYearRange[1] - minDistance), curYearRange[1]]
-        : [curYearRange[0], Math.max(newValue[1], curYearRange[0] + minDistance)];
+      const newYearRange =
+        activeThumb === 0
+          ? [Math.min(newValue[0], curYearRange[1] - minDistance), curYearRange[1]]
+          : [curYearRange[0], Math.max(newValue[1], curYearRange[0] + minDistance)];
 
-    setCurYearRange(newYearRange);
+      setCurYearRange(newYearRange);
 
-    if (onChange) {
-      onChange(newYearRange);
-    }
-  }, [curYearRange, onChange]);
+      if (onChange) {
+        onChange(newYearRange);
+      }
+    },
+    [curYearRange, onChange]
+  );
 
   const marks = [
     { value: startYear, label: startYear.toString() },
@@ -54,10 +57,19 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      {/* <div style={{ padding: '10px', backgroundColor: darkTheme.palette.background.paper, borderRadius: '8px' }}> */}
-      <Typography id="input-slider" textAlign={"left"}>
-              Year
-            </Typography>
+      <div
+        style={{
+          height: '64px', // Matches the dropdown height exactly
+          padding: '8px 16px',
+          marginTop: '16px', // Ensure spacing from the blue bar
+          background: 'linear-gradient(135deg, rgba(130,170,255,0.3), rgba(187,134,252,0.3))',
+          borderRadius: '12px',
+          backdropFilter: 'blur(10px)', // Glassmorphism effect
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+          display: 'flex',
+          alignItems: 'center', // Centers the slider vertically
+        }}
+      >
         <Slider
           getAriaLabel={() => 'Year Range'}
           value={curYearRange}
@@ -69,26 +81,42 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
           max={endYear}
           marks={marks}
           sx={{
-            color: 'primary.main', // Slider track color
+            color: 'primary.main',
+            '.MuiSlider-track': {
+              background: 'linear-gradient(90deg, #82aaff, #ff79c6)', // Gradient for active track
+              height: '6px',
+            },
             '.MuiSlider-thumb': {
-              backgroundColor: 'primary.main', // Thumb color
+              backgroundColor: '#82aaff',
+              width: '16px',
+              height: '16px',
+              border: '3px solid #ffffff',
+              boxShadow: '0 0 8px rgba(130, 170, 255, 0.5)',
+              transition: 'box-shadow 0.3s ease, transform 0.3s ease',
               '&:hover': {
-                boxShadow: '0 0 0 8px rgba(130, 170, 255, 0.16)', // Subtle glow effect on hover
+                boxShadow: '0 0 12px rgba(130, 170, 255, 0.8)',
+                transform: 'scale(1.2)',
               },
             },
             '.MuiSlider-rail': {
-              backgroundColor: 'text.secondary', // Slider rail color
+              backgroundColor: '#4a4a4a',
+              opacity: 0.6,
+              height: '6px',
             },
             '.MuiSlider-mark': {
-              backgroundColor: 'text.secondary', // Marks color
-              opacity: 0.8,
+              backgroundColor: '#b3b3b3',
+              height: '6px',
+              width: '6px',
+              borderRadius: '50%',
             },
             '.MuiSlider-markLabel': {
-              color: 'text.secondary', // Label color
+              color: '#b3b3b3',
+              fontSize: '0.9rem',
+              fontWeight: 'bold',
             },
           }}
         />
-      {/* </div> */}
+      </div>
     </ThemeProvider>
   );
 }
