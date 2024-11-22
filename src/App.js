@@ -11,7 +11,8 @@ const App = () => {
 
   return (
     <div className="App" style={{ paddingTop: "50px", height: "1000px" }}>
-        <Container maxWidth={false} style={{ height: "1000px" }}>
+        <Container manpm start
+        xWidth={false} style={{ height: "1000px" }}>
             <Button
               variant="contained"
               color="primary"
