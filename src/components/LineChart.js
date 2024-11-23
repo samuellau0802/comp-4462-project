@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 import data from '../data/countries_data_2008_2023.json';
 import { Button, ButtonGroup, Box, Typography, Card, CardContent } from '@mui/material';
+import * as d3 from 'd3';
 
 const getDataForCountry = (country, yearRange, indicator1, indicator2) => {
     const [startYear, endYear] = yearRange;
@@ -72,25 +73,39 @@ const normalizeData = (chartData, indicators) => {
 };
 
 const formatNumber = (num) => {
-    if (num >= 1e9) {
-        return (num / 1e9).toFixed(1) + 'B';
-    } else if (num >= 1e6) {
-        return (num / 1e6).toFixed(1) + 'M';
-    } else if (num >= 1e3) {
-        return (num / 1e3).toFixed(1) + 'K';
+    const absNum = Math.abs(num);
+    let formattedNumber;
+
+    if (absNum >= 1e9) {
+        formattedNumber = (absNum / 1e9).toFixed(1) + 'B';
+    } else if (absNum >= 1e6) {
+        formattedNumber = (absNum / 1e6).toFixed(1) + 'M';
+    } else if (absNum >= 1e3) {
+        formattedNumber = (absNum / 1e3).toFixed(1) + 'K';
     } else {
-        return num.toString();
+        formattedNumber = absNum.toString();
     }
+
+    return num < 0 ? '-' + formattedNumber : formattedNumber;
+};
+
+const getCorrelationColor = (correlation) => {
+    if (correlation === null || correlation === undefined) return "#1d1d1f";
+    const colorScale = d3.scaleSequential(d3.interpolateRdYlGn).domain([-1, 1]);
+    return colorScale(correlation);
 };
 
 const CorrelationCard = ({ correlation }) => {
     if (correlation === null || correlation === undefined) return null;
 
+    const backgroundColor = getCorrelationColor(correlation);
+    const textColor = (correlation > 0.5 || correlation < -0.5) ? "#ffffff" : "#000000";
+
     return (
         <Card
             style={{
-                backgroundColor: "#1d1d1f",
-                color: "#e0e0e0",
+                backgroundColor: backgroundColor,
+                color: textColor,
                 border: "1px solid #3a3a3b",
                 borderRadius: "8px",
                 marginBottom: "16px",
@@ -177,10 +192,11 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                                 angle: -90,
                                                 position: 'insideLeft',
                                                 offset: 10,
-                                                fontSize: 12 // Adjust the font size here
+                                                fontSize: 13,
+                                                fill: "#8884d8" // Line color for indicator1
                                             }}
                                             interval="preserveStartEnd"
-                                            tick={{ fontSize: 12 }} // Adjust the font size of the ticks
+                                            tick={{ fontSize: 13, fill: "#8884d8" }} // Line color for indicator1
                                             tickFormatter={formatNumber}
                                         />
                                         <YAxis
@@ -190,11 +206,12 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                                 value: indicator2,
                                                 angle: 90,
                                                 position: 'insideRight',
-                                                offset: 5,
-                                                fontSize: 12 // Adjust the font size here
+                                                offset: 0,
+                                                fontSize: 13,
+                                                fill: "#82ca9d" // Line color for indicator2
                                             }}
                                             interval="preserveStartEnd"
-                                            tick={{ fontSize: 12 }} // Adjust the font size of the ticks
+                                            tick={{ fontSize: 13, fill: "#82ca9d" }} // Line color for indicator2
                                             tickFormatter={formatNumber}
                                         />
                                         <Tooltip formatter={formatNumber} />
@@ -222,10 +239,10 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                                 angle: -90,
                                                 position: 'insideLeft',
                                                 offset: 0,
-                                                fontSize: 10 // Adjust the font size here
+                                                fontSize: 14
                                             }}
                                             interval="preserveStartEnd"
-                                            tick={{ fontSize: 10 }} // Adjust the font size of the ticks
+                                            tick={{ fontSize: 14 }}
                                             tickFormatter={formatNumber}
                                         />
                                         <Tooltip formatter={formatNumber} />

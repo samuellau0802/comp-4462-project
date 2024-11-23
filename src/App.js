@@ -10,7 +10,7 @@ const App = () => {
   const divRef = useRef(null);
   const [isSplit, setIsSplit] = useState(false);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-  const [screenSize, setScreenSize] = useState('md');
+  const [screenSize, setScreenSize] = useState('xl');
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,7 +25,7 @@ const App = () => {
 
   const handleSplit = () => {
     setIsSplit(!isSplit);
-    isSplit ? setScreenSize('md') : setScreenSize('xl');
+    isSplit ? setScreenSize('xl') : setScreenSize('xl');
   }
 
   return (

@@ -198,7 +198,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
           marginTop: '10px',
         }}
       >
-        <svg viewBox="0 0 300 10" preserveAspectRatio="xMinYMin meet" style={{ width: '100%', height: '20px' }}>
+        <svg viewBox="0 0 400 10" preserveAspectRatio="xMinYMin meet" style={{ width: '100%', height: '20px' }}>
           <defs>
             <linearGradient id="colorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style={{ stopColor: d3.interpolateRdYlGn(-1), stopOpacity: 1 }} />
@@ -206,7 +206,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
               <stop offset="100%" style={{ stopColor: d3.interpolateRdYlGn(1), stopOpacity: 1 }} />
             </linearGradient>
           </defs>
-          <rect width="300" height="20" fill="url(#colorGradient)" />
+          <rect width="400" height="20" fill="url(#colorGradient)" />
         </svg>
         <div
           style={{
