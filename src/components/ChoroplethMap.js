@@ -1,9 +1,23 @@
 import React, { useMemo, useCallback, useState } from 'react';
 import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simple-maps';
 import * as d3 from 'd3';
-import { Tooltip } from 'react-tooltip';
 import geodata from '../data/world-110m.json';
 import computeCorrelation from './Correlation';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+
+const CustomTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(20),
+    border: '1px solid #dadde9',
+  },
+}));
 
 const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
   const colorScale = useMemo(() => d3.scaleSequential(d3.interpolateRdYlGn).domain([-1, 1]), []);
@@ -39,14 +53,23 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
       const indicatorValue = computeCorrelation(countryName, yearRange, 'Stock Price', indicator);
 
       return (
-        <Geography
-          key={geo.rsmKey}
-          geography={geo}
-          style={getGeographyStyle(indicatorValue)}
-          onClick={() => onClick && onClick(countryName, indicatorValue.toFixed(3))}
-          data-tooltip-id="map"
-          data-tooltip-content={`${countryName}: ${indicatorValue.toFixed(3)}`}
-        />
+        <CustomTooltip  
+            title={
+              <React.Fragment>
+                  <Typography color="inherit">{countryName}</Typography>
+                  <b>{indicatorValue.toFixed(3)}</b>
+              </React.Fragment>
+          }
+          arrow
+          >
+          <Geography
+            key={geo.rsmKey}
+            geography={geo}
+            style={getGeographyStyle(indicatorValue)}
+            onClick={() => onClick && onClick(countryName, indicatorValue.toFixed(3))}
+          />
+        </CustomTooltip>
+
       );
     },
     [yearRange, indicator, onClick, getGeographyStyle]
@@ -221,27 +244,15 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
             width: '100%',
             color: '#e0e0e0',
             fontSize: '0.9rem',
-            marginTop: '5px',
+            marginTop: '10px',
             position: 'relative',
           }}
         >
-          <span style={{ position: 'absolute', left: '0' }}>-1</span>
+          <span style={{ position: 'absolute', left: '0'}}>-1</span>
           <span style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>0</span>
           <span style={{ position: 'absolute', right: '0' }}>1</span>
         </div>
       </div>
-
-      <Tooltip
-        id="map"
-        style={{
-          backgroundColor: '#1c1c1c',
-          color: '#e0e0e0',
-          border: '1px solid #82aaff',
-          borderRadius: '8px',
-          padding: '10px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.6)',
-        }}
-      />
     </div>
   );
 };

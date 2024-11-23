@@ -25,7 +25,7 @@ const App = () => {
 
   const handleSplit = () => {
     setIsSplit(!isSplit);
-    isSplit ? setScreenSize('xl') : setScreenSize('xl');
+    isSplit ? setScreenSize('xl') : setScreenSize('max');
   }
 
   return (
