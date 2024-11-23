@@ -72,7 +72,7 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
           justifyContent: 'center',
           transition: 'transform 0.3s ease, box-shadow 0.3s ease',
           '&:hover': {
-            transform: 'scale(1.03)',
+            // transform: 'scale(1.03)',
             boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6)',
           },
         }}
@@ -103,7 +103,7 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
               transition: 'box-shadow 0.3s ease, transform 0.3s ease',
               '&:hover': {
                 boxShadow: '0 6px 16px rgba(130, 170, 255, 0.8)',
-                transform: 'scale(1.2)',
+                // transform: 'scale(1.2)',
               },
               '&.Mui-focusVisible': {
                 boxShadow: '0 0 16px rgba(130, 170, 255, 1)',

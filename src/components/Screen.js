@@ -70,19 +70,7 @@ const Screen = ({ windowHeight }) => {
     [selectedCountry]
   );
 
-  const handleScrollyTellingComplete = () => {
-    setShowScrollyTelling(false);
-  };
 
-  const startScrollyTelling = () => {
-    setShowScrollyTelling(true);
-  };
-
-  useEffect(() => {}, [indicator, curYearRange, selectedCountry]);
-
-  if (showScrollyTelling) {
-    return <ScrollyTelling onComplete={handleScrollyTellingComplete} />;
-  }
 
   return (
     <Container
@@ -106,27 +94,7 @@ const Screen = ({ windowHeight }) => {
           zIndex: 1000,
         }}
       >
-        <Button
-          variant="contained"
-          onClick={startScrollyTelling}
-          sx={{
-            background: 'linear-gradient(135deg, #82aaff, #ffcc80)',
-            color: '#ffffff',
-            fontSize: '1rem',
-            fontWeight: '600',
-            borderRadius: '25px',
-            padding: '10px 20px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-            '&:hover': {
-              transform: 'scale(1.05)',
-              boxShadow: '0 6px 16px rgba(0, 0, 0, 0.8)',
-            },
-          }}
-        >
-          Start Tour
-        </Button>
+ 
       </Box>
 
       {/* Main Interactive Map and Controls */}
@@ -164,7 +132,7 @@ const Screen = ({ windowHeight }) => {
       </Grid>
 
       <Allotment vertical>
-        <Allotment.Pane minSize={200}>
+        <Allotment.Pane minSize={200} preferredSize={900}>
           <ChoroplethMap
             yearRange={curYearRange}
             indicator={indicator}
@@ -175,7 +143,7 @@ const Screen = ({ windowHeight }) => {
         </Allotment.Pane>
 
         {selectedCountry && (
-          <Allotment.Pane minSize={200}>
+          <Allotment.Pane minSize={200} preferredSize={650}>
             <LineChartComponent
               country={selectedCountry}
               yearRange={curYearRange}

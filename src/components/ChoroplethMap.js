@@ -83,7 +83,8 @@ const ChoroplethMap = ({
           : colorScale(indicatorValue),
         stroke: countryName === localHighlightedCountry ? '#FFD700' : '#1c1c1c',
         strokeWidth: countryName === localHighlightedCountry ? 2 : 0.5,
-        transition: 'fill 0.5s ease, stroke 0.3s ease',
+        // transition: 'fill 0.5s ease, stroke 0.3s ease',
+        outline: 'none',
       },
       hover: {
         fill: isNaN(indicatorValue)
@@ -91,7 +92,8 @@ const ChoroplethMap = ({
           : d3.color(colorScale(indicatorValue)).brighter(0.5),
         stroke: '#ffffff',
         strokeWidth: 2,
-        transform: 'scale(1.05)', // Slightly scale the hovered country
+        // transform: 'scale(1.05)', // Slightly scale the hovered country
+        outline: 'none',
       },
       pressed: {
         fill: isNaN(indicatorValue)
@@ -99,6 +101,7 @@ const ChoroplethMap = ({
           : d3.color(colorScale(indicatorValue)).darker(0.5),
         stroke: '#FFD700',
         strokeWidth: 2.5,
+        outline: 'none',
       },
     }),
     [colorScale, localHighlightedCountry]
@@ -134,10 +137,10 @@ const ChoroplethMap = ({
             style={getGeographyStyle(indicatorValue, countryName)}
             onMouseEnter={(e) => {
               bringToFront(e.target); // Bring the country to the top
-              e.target.style.transform = 'scale(1.1)';
+              // e.target.style.transform = 'scale(1.1)';
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = 'scale(1)';
+              // e.target.style.transform = 'scale(1)';
             }}
             onClick={() =>
               onClick &&
@@ -184,7 +187,7 @@ const ChoroplethMap = ({
         alignItems: 'center',
         background: 'linear-gradient(135deg, #101010, #1a1a1a)',
         borderRadius: '20px',
-        padding: '30px',
+        padding: '10px',
         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.9)',
         overflow: 'hidden',
         margin: '20px auto',
@@ -198,13 +201,12 @@ const ChoroplethMap = ({
           display: 'flex',
           justifyContent: 'space-between',
           width: '100%',
-          marginBottom: '10px',
+          marginBottom: '5px',
         }}
       >
         <button
           onClick={handleReset}
           style={{
-            padding: '10px 20px',
             background: 'linear-gradient(135deg, #82aaff, #ffcc80)',
             border: 'none',
             borderRadius: '25px',
@@ -260,7 +262,7 @@ const ChoroplethMap = ({
           </button>
         </div>
       </div>
-      <div style={{ height: '500px', width: '100%' }}>
+      <div style={{ height: '700px', width: '100%' }}>
         <ComposableMap projection="geoMercator">
           <ZoomableGroup
             center={position.coordinates}

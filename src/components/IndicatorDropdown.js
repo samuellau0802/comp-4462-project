@@ -60,7 +60,7 @@ const IndicatorDropdown = ({ indicator, handleIndicatorChange }) => {
           height: '64px',
           transition: 'transform 0.3s ease, box-shadow 0.3s ease',
           '&:hover': {
-            transform: 'scale(1.03)',
+            // transform: 'scale(1.03)',
             boxShadow: '0 12px 40px rgba(0, 0, 0, 1)',
           },
         }}

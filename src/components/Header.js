@@ -44,7 +44,7 @@ const darkTheme = createTheme({
   },
 });
 
-const Header = ({ handleSplit, isSplit }) => {
+const Header = ({ handleSplit, isSplit, startScrollyTelling }) => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Box
@@ -64,7 +64,7 @@ const Header = ({ handleSplit, isSplit }) => {
             padding: '8px 16px',
             transition: 'transform 0.3s ease, box-shadow 0.3s ease',
             '&:hover': {
-              transform: 'scale(1.02)',
+              // transform: 'scale(1.02)',
               boxShadow: '0 12px 40px rgba(0, 0, 0, 0.8)',
             },
           }}
@@ -86,7 +86,7 @@ const Header = ({ handleSplit, isSplit }) => {
                 fontSize: '0.9rem',
                 marginRight: '16px',
                 '&:hover': {
-                  transform: 'scale(1.1)',
+                  // transform: 'scale(1.1)',
                   boxShadow: '0 8px 16px rgba(130, 170, 255, 0.8)',
                 },
               }}
@@ -111,15 +111,27 @@ const Header = ({ handleSplit, isSplit }) => {
               Macro-Economic Data and Stock Prices Visualization
             </Typography>
 
-            {/* Placeholder Button (Hidden) */}
             <Button
-              color="inherit"
-              disabled
+              variant="contained"
+              onClick={startScrollyTelling}
               sx={{
-                cursor: 'default',
-                opacity: 0,
+                background: 'linear-gradient(135deg, #82aaff, #ffcc80)',
+                color: '#ffffff',
+                fontSize: '1rem',
+                fontWeight: '600',
+                borderRadius: '25px',
+                padding: '10px 20px',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                '&:hover': {
+                  // transform: 'scale(1.05)',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.8)',
+                },
               }}
-            ></Button>
+            >
+              Start Tour
+        </Button>
           </Toolbar>
         </AppBar>
       </Box>
