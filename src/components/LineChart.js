@@ -177,9 +177,9 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                         <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={isDual ? chartData : singleYData}>
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis 
-                                    dataKey="year" 
-                                    interval="preserveStartEnd" 
+                                <XAxis
+                                    dataKey="year"
+                                    interval="preserveStartEnd"
                                     label={{fontSize: 12}}
                                     tick={{ fontSize: 12 }}
                                     />

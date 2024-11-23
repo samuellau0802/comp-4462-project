@@ -1,3 +1,5 @@
+// YearRangeSlider.js
+
 import React, { useState, useCallback } from 'react';
 import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -59,10 +61,11 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
     <ThemeProvider theme={darkTheme}>
       <div
         style={{
-          height: '45px', // Matches the dropdown height exactly
+          height: '64px', // Matches the dropdown height exactly
           padding: '8px 16px',
           marginTop: '16px', // Ensure spacing from the blue bar
-          background: 'linear-gradient(135deg, rgba(130,170,255,0.3), rgba(187,134,252,0.3))',
+          background:
+            'linear-gradient(135deg, rgba(130,170,255,0.3), rgba(187,134,252,0.3))',
           borderRadius: '12px',
           backdropFilter: 'blur(10px)', // Glassmorphism effect
           boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',

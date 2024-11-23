@@ -1,5 +1,16 @@
+// IndicatorDropdown.js
+
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem, ThemeProvider, createTheme, ListItemIcon, Typography } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  ThemeProvider,
+  createTheme,
+  ListItemIcon,
+  Typography,
+} from '@mui/material';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SavingsIcon from '@mui/icons-material/Savings';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
@@ -43,12 +54,13 @@ const IndicatorDropdown = ({ indicator, handleIndicatorChange }) => {
         variant="outlined"
         sx={{
           marginTop: 2,
-          background: 'linear-gradient(135deg, rgba(130, 170, 255, 0.2), rgba(187, 134, 252, 0.2))',
+          background:
+            'linear-gradient(135deg, rgba(130, 170, 255, 0.2), rgba(187, 134, 252, 0.2))',
           borderRadius: '12px',
           boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
           backdropFilter: 'blur(10px)', // Glassmorphism effect
           transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          height: '45px', // Ensures consistent thickness
+          height: '64px', // Ensures consistent thickness
           minHeight: '64px', // Prevent shrinking
           '&:hover': {
             transform: 'scale(1.02)',

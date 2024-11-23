@@ -1,5 +1,12 @@
+// ChoroplethMap.js
+
 import React, { useMemo, useCallback, useState, useEffect } from 'react';
-import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simple-maps';
+import {
+  ComposableMap,
+  ZoomableGroup,
+  Geographies,
+  Geography,
+} from 'react-simple-maps';
 import * as d3 from 'd3';
 import geodata from '../data/world-110m.json';
 import computeCorrelation from './Correlation';
@@ -19,97 +26,156 @@ const CustomTooltip = styled(({ className, ...props }) => (
   },
 }));
 
-const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
-  const colorScale = useMemo(() => d3.scaleSequential(d3.interpolateRdYlGn).domain([-1, 1]), []);
+const ChoroplethMap = ({
+  yearRange,
+  indicator,
+  onClick,
+  position: externalPosition,
+  setPosition: externalSetPosition,
+  highlightedCountry,
+  style,
+}) => {
+  const colorScale = useMemo(
+    () => d3.scaleSequential(d3.interpolateRdYlGn).domain([-1, 1]),
+    []
+  );
   const [windowHeight, setWindowHeight] = useState(window.innerHeight - 100);
 
   useEffect(() => {
     const handleResize = () => {
       setWindowHeight(window.innerHeight - 100);
     };
-    
+
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
+  // Internal state management for position
+  const [position, setPosition] = useState(
+    externalPosition || { coordinates: [0, 0], zoom: 1 }
+  );
+
+  useEffect(() => {
+    if (externalPosition) {
+      setPosition(externalPosition);
+    }
+  }, [externalPosition]);
+
+  const setPositionWrapper = (newPosition) => {
+    if (externalSetPosition) {
+      externalSetPosition(newPosition);
+    } else {
+      setPosition(newPosition);
+    }
+  };
+
+  const [localHighlightedCountry, setLocalHighlightedCountry] = useState(
+    highlightedCountry || null
+  );
+
+  useEffect(() => {
+    setLocalHighlightedCountry(highlightedCountry || null);
+  }, [highlightedCountry]);
+
   const getGeographyStyle = useCallback(
-    (indicatorValue) => ({
-      default: {
-        fill: isNaN(indicatorValue) ? '#2b2b2b' : colorScale(indicatorValue),
-        outline: 'none',
-        stroke: '#1f1f1f',
-        strokeWidth: 0.5,
-      },
-      hover: {
-        fill: isNaN(indicatorValue) ? '#4a4a4a' : colorScale(indicatorValue),
-        fillOpacity: 0.9,
-        outline: 'none',
-        stroke: '#ffffff',
-        strokeWidth: 1,
-      },
-      pressed: {
-        fill: isNaN(indicatorValue) ? '#4a4a4a' : colorScale(indicatorValue),
-        outline: 'none',
-        stroke: '#ffffff',
-        strokeWidth: 1,
-      },
-    }),
-    [colorScale]
+    (indicatorValue, countryName) => {
+      const isHighlighted = countryName === localHighlightedCountry;
+      return {
+        default: {
+          fill: isNaN(indicatorValue)
+            ? '#2b2b2b'
+            : colorScale(indicatorValue),
+          outline: 'none',
+          stroke: isHighlighted ? '#FFD700' : '#1f1f1f',
+          strokeWidth: isHighlighted ? 2 : 0.5,
+        },
+        hover: {
+          fill: isNaN(indicatorValue)
+            ? '#4a4a4a'
+            : colorScale(indicatorValue),
+          fillOpacity: 0.9,
+          outline: 'none',
+          stroke: '#ffffff',
+          strokeWidth: 1,
+        },
+        pressed: {
+          fill: isNaN(indicatorValue)
+            ? '#4a4a4a'
+            : colorScale(indicatorValue),
+          outline: 'none',
+          stroke: '#ffffff',
+          strokeWidth: 1,
+        },
+      };
+    },
+    [colorScale, localHighlightedCountry]
   );
 
   const renderGeography = useCallback(
     (geo) => {
       const countryName = geo.properties.name;
-      const indicatorValue = computeCorrelation(countryName, yearRange, 'Stock Price', indicator);
+      const indicatorValue = computeCorrelation(
+        countryName,
+        yearRange,
+        'Stock Price',
+        indicator
+      );
 
       return (
-        <CustomTooltip  
-            title={
-              <React.Fragment>
-                  <Typography color="inherit">{countryName}</Typography>
-                  <b>{indicatorValue.toFixed(3)}</b>
-              </React.Fragment>
+        <CustomTooltip
+          key={geo.rsmKey}
+          title={
+            <React.Fragment>
+              <Typography color="inherit">{countryName}</Typography>
+              <b>{isNaN(indicatorValue) ? 'N/A' : indicatorValue.toFixed(3)}</b>
+            </React.Fragment>
           }
           arrow
-          >
+        >
           <Geography
-            key={geo.rsmKey}
             geography={geo}
-            style={getGeographyStyle(indicatorValue)}
-            onClick={() => onClick && onClick(countryName, indicatorValue.toFixed(3))}
+            style={getGeographyStyle(indicatorValue, countryName)}
+            onClick={() =>
+              onClick &&
+              onClick(
+                countryName,
+                isNaN(indicatorValue) ? 'N/A' : indicatorValue.toFixed(3)
+              )
+            }
           />
         </CustomTooltip>
-
       );
     },
     [yearRange, indicator, onClick, getGeographyStyle]
   );
 
-  const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
-
-  const handleMoveEnd = useCallback((newPosition) => {
-    setPosition(newPosition);
-  }, []);
+  const handleMoveEnd = useCallback(
+    (newPosition) => {
+      setPositionWrapper(newPosition);
+    },
+    [setPositionWrapper]
+  );
 
   const handleReset = () => {
-    setPosition({ coordinates: [0, 0], zoom: 1 });
+    setPositionWrapper({ coordinates: [0, 0], zoom: 1 });
   };
 
   const handleZoomIn = () => {
     if (position.zoom >= 7.1) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom + 1 }));
+    setPositionWrapper({ ...position, zoom: position.zoom + 1 });
   };
 
   const handleZoomOut = () => {
     if (position.zoom <= 1.9) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom - 1 }));
+    setPositionWrapper({ ...position, zoom: position.zoom - 1 });
   };
 
   return (
     <div
       style={{
+        ...style,
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
@@ -123,7 +189,15 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
         maxWidth: '1200px',
       }}
     >
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+      {/* Map controls (Zoom In, Zoom Out, Reset) */}
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: '20px',
+        }}
+      >
         <button
           onClick={handleReset}
           style={{
@@ -138,7 +212,8 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'scale(1.1)';
-            e.target.style.boxShadow = '0 8px 24px rgba(130, 170, 255, 0.6)';
+            e.target.style.boxShadow =
+              '0 8px 24px rgba(130, 170, 255, 0.6)';
           }}
           onMouseLeave={(e) => {
             e.target.style.transform = 'scale(1)';
@@ -203,7 +278,14 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
         </div>
       </div>
 
-      <div style={{ width: '100%', height: `${windowHeight * 0.5}px`, marginBottom: '20px' }}>
+      {/* Map visualization */}
+      <div
+        style={{
+          width: '100%',
+          height: `${windowHeight * 0.5}px`,
+          marginBottom: '20px',
+        }}
+      >
         <ComposableMap projection="geoMercator">
           <ZoomableGroup
             center={position.coordinates}
@@ -219,7 +301,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
         </ComposableMap>
       </div>
 
-      {/* Updated Color Gradient Legend */}
+      {/* Color Gradient Legend */}
       <div
         style={{
           display: 'flex',
@@ -239,11 +321,41 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
           style={{ width: '100%', height: '20px' }}
         >
           <defs>
-            <linearGradient id="colorGradient" x1="-50%" y1="0%" x2="60%" y2="0%">
-              <stop offset="0%" style={{ stopColor: d3.interpolateRdYlGn(-1), stopOpacity: 1 }} />
-              <stop offset="35%" style={{ stopColor: d3.interpolateRdYlGn(-0.5), stopOpacity: 1 }} />
-              <stop offset="75%" style={{ stopColor: d3.interpolateRdYlGn(0), stopOpacity: 1 }} />
-              <stop offset="100%" style={{ stopColor: d3.interpolateRdYlGn(1), stopOpacity: 1 }} />
+            <linearGradient
+              id="colorGradient"
+              x1="-50%"
+              y1="0%"
+              x2="60%"
+              y2="0%"
+            >
+              <stop
+                offset="0%"
+                style={{
+                  stopColor: d3.interpolateRdYlGn(-1),
+                  stopOpacity: 1,
+                }}
+              />
+              <stop
+                offset="35%"
+                style={{
+                  stopColor: d3.interpolateRdYlGn(-0.5),
+                  stopOpacity: 1,
+                }}
+              />
+              <stop
+                offset="75%"
+                style={{
+                  stopColor: d3.interpolateRdYlGn(0),
+                  stopOpacity: 1,
+                }}
+              />
+              <stop
+                offset="100%"
+                style={{
+                  stopColor: d3.interpolateRdYlGn(1),
+                  stopOpacity: 1,
+                }}
+              />
             </linearGradient>
           </defs>
           <rect x="0" y="0" width="300" height="20" fill="url(#colorGradient)" />
@@ -260,8 +372,16 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
             position: 'relative',
           }}
         >
-          <span style={{ position: 'absolute', left: '0'}}>-1</span>
-          <span style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>0</span>
+          <span style={{ position: 'absolute', left: '0' }}>-1</span>
+          <span
+            style={{
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            }}
+          >
+            0
+          </span>
           <span style={{ position: 'absolute', right: '0' }}>1</span>
         </div>
       </div>

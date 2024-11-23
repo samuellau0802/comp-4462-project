@@ -1,3 +1,5 @@
+// Correlation.js
+
 import data from '../data/countries_data_2008_2023.json';
 
 /**
@@ -35,7 +37,9 @@ const computeCorrelation = (country, yearRange, indicator1, indicator2) => {
 
   // Check if there are sufficient values for correlation calculation
   if (values.length === 0) {
-    console.warn(`No valid data points for indicators "${indicator1}" and "${indicator2}" in the specified range.`);
+    console.warn(
+      `No valid data points for indicators "${indicator1}" and "${indicator2}" in the specified range.`
+    );
     return NaN;
   }
 
@@ -53,10 +57,14 @@ const computeCorrelation = (country, yearRange, indicator1, indicator2) => {
   );
 
   const numerator = pSum - (sum1 * sum2) / n;
-  const denominator = Math.sqrt((sum1Sq - (sum1 ** 2) / n) * (sum2Sq - (sum2 ** 2) / n));
+  const denominator = Math.sqrt(
+    (sum1Sq - sum1 ** 2 / n) * (sum2Sq - sum2 ** 2 / n)
+  );
 
   if (denominator === 0) {
-    console.warn('Denominator is zero, indicating no variation in one or both indicators.');
+    console.warn(
+      'Denominator is zero, indicating no variation in one or both indicators.'
+    );
     return 0;
   }
 

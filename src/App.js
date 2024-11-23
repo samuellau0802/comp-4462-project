@@ -6,6 +6,7 @@ import "allotment/dist/style.css";
 import Screen from "./components/Screen";
 import Header from "./components/Header";
 
+
 const App = () => {
   const [isSplit, setIsSplit] = useState(false);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight );

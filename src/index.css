@@ -1,6 +1,14 @@
+/* Index.css */
+
+/* Ensure full height for HTML and body */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* Base styles for Dark Mode */
 body {
-  margin: 0;
   background-color: #121212; /* Matches App background */
   color: #e0e0e0; /* Light text for dark backgrounds */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,6 +18,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Code block styling */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -19,23 +28,20 @@ code {
   border-radius: 4px;
 }
 
+/* Global font size and scroll behavior */
 html {
-  font-family: system-ui, sans-serif;
   font-size: 16px; /* Standard, comfortable font size */
   scroll-behavior: smooth; /* Smooth scrolling for modern UX */
 }
 
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
-
+/* SVG styling */
 svg {
   display: inline-block;
   vertical-align: middle;
   fill: #e0e0e0; /* Light SVG fill for icons */
 }
 
+/* Custom button styling */
 .custom-button {
   background-color: #1d1d1f !important;
   color: white !important;
@@ -48,4 +54,19 @@ svg {
 .custom-button:disabled {
   background-color: #505055 !important;
   color: white !important;
+}
+
+/* Scrollbar Styles for WebKit Browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4a4a50;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1d1d1f;
 }
