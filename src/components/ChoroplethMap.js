@@ -262,7 +262,7 @@ const ChoroplethMap = ({
           </button>
         </div>
       </div>
-      <div style={{ height: '700px', width: '100%' }}>
+      <div style={{ height: '600px', width: '100%' }}>
         <ComposableMap projection="geoMercator">
           <ZoomableGroup
             center={position.coordinates}
