@@ -101,8 +101,8 @@ const Screen = ({ windowHeight }) => {
       <Box
         sx={{
           position: 'absolute',
-          top: 195, // Distance from the bottom
-          right: 830, // Distance from the right
+          top: 196.5, // Distance from the bottom
+          right: 730, // Distance from the right
           zIndex: 1000,
         }}
       >
