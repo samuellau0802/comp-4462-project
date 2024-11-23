@@ -184,7 +184,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
         </ComposableMap>
       </div>
 
-      {/* Reverted Color Gradient Legend */}
+      {/* Updated Color Gradient Legend */}
       <div
         style={{
           display: 'flex',
@@ -194,33 +194,40 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
           background: 'rgba(0, 0, 0, 0.8)',
           borderRadius: '12px',
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.6)',
-          width: '80%',
+          width: '100%',
           marginTop: '10px',
         }}
       >
-        <svg viewBox="0 0 400 10" preserveAspectRatio="xMinYMin meet" style={{ width: '100%', height: '20px' }}>
+        <svg
+          viewBox="0 0 300 20"
+          preserveAspectRatio="none"
+          style={{ width: '100%', height: '20px' }}
+        >
           <defs>
-            <linearGradient id="colorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id="colorGradient" x1="-50%" y1="0%" x2="60%" y2="0%">
               <stop offset="0%" style={{ stopColor: d3.interpolateRdYlGn(-1), stopOpacity: 1 }} />
-              <stop offset="50%" style={{ stopColor: d3.interpolateRdYlGn(0), stopOpacity: 1 }} />
+              <stop offset="35%" style={{ stopColor: d3.interpolateRdYlGn(-0.5), stopOpacity: 1 }} />
+              <stop offset="75%" style={{ stopColor: d3.interpolateRdYlGn(0), stopOpacity: 1 }} />
               <stop offset="100%" style={{ stopColor: d3.interpolateRdYlGn(1), stopOpacity: 1 }} />
             </linearGradient>
           </defs>
-          <rect width="400" height="20" fill="url(#colorGradient)" />
+          <rect x="0" y="0" width="300" height="20" fill="url(#colorGradient)" />
         </svg>
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
+            alignItems: 'center',
             width: '100%',
             color: '#e0e0e0',
             fontSize: '0.9rem',
             marginTop: '5px',
+            position: 'relative',
           }}
         >
-          <span>-1</span>
-          <span>0</span>
-          <span>1</span>
+          <span style={{ position: 'absolute', left: '0' }}>-1</span>
+          <span style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>0</span>
+          <span style={{ position: 'absolute', right: '0' }}>1</span>
         </div>
       </div>
 
