@@ -1,5 +1,3 @@
-// IndicatorDropdown.js
-
 import React from 'react';
 import {
   FormControl,
@@ -18,27 +16,27 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import WorkIcon from '@mui/icons-material/Work';
 
-// Create a stunning dark theme with gradient support
+// Custom dark theme with polished Apple-inspired gradients and effects
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#82aaff', // Soft blue for primary color
+      main: '#82aaff', // Calming blue
     },
     secondary: {
-      main: '#ff79c6', // Pink accent for wow factor
+      main: '#ff79c6', // Vibrant pink for accents
     },
     background: {
-      default: '#121212', // Dark base
-      paper: 'rgba(255, 255, 255, 0.1)', // Glassmorphism background
+      default: '#121212', // Deep dark background
+      paper: 'rgba(255, 255, 255, 0.08)', // Subtle frosted glassmorphism
     },
     text: {
-      primary: '#ffffff', // Bright white text
-      secondary: '#b3b3b3', // Muted grey text
+      primary: '#ffffff', // Bright text for contrast
+      secondary: '#b3b3b3', // Muted secondary text
     },
   },
   typography: {
-    fontFamily: '"Poppins", "Roboto", "Helvetica Neue", sans-serif',
+    fontFamily: '"SF Pro Display", "Roboto", "Helvetica Neue", sans-serif',
     fontSize: 14,
     button: {
       textTransform: 'none',
@@ -55,16 +53,15 @@ const IndicatorDropdown = ({ indicator, handleIndicatorChange }) => {
         sx={{
           marginTop: 2,
           background:
-            'linear-gradient(135deg, rgba(130, 170, 255, 0.2), rgba(187, 134, 252, 0.2))',
-          borderRadius: '12px',
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
-          backdropFilter: 'blur(10px)', // Glassmorphism effect
+            'linear-gradient(145deg, rgba(130, 170, 255, 0.15), rgba(255, 121, 198, 0.15))',
+          borderRadius: '16px',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)',
+          backdropFilter: 'blur(10px)',
+          height: '64px',
           transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          height: '64px', // Ensures consistent thickness
-          minHeight: '64px', // Prevent shrinking
           '&:hover': {
-            transform: 'scale(1.02)',
-            boxShadow: '0 12px 32px rgba(0, 0, 0, 0.6)',
+            transform: 'scale(1.03)',
+            boxShadow: '0 12px 40px rgba(0, 0, 0, 1)',
           },
         }}
       >
@@ -97,18 +94,18 @@ const IndicatorDropdown = ({ indicator, handleIndicatorChange }) => {
               borderWidth: '2px',
             },
             fontSize: '1.1rem',
-            borderRadius: '12px',
+            borderRadius: '16px',
             overflow: 'hidden',
           }}
           MenuProps={{
             PaperProps: {
               sx: {
-                background: 'rgba(18, 18, 18, 0.9)',
+                background: 'rgba(18, 18, 18, 0.95)',
                 backdropFilter: 'blur(6px)',
-                borderRadius: '12px',
+                borderRadius: '16px',
                 color: 'text.primary',
                 '& .MuiMenuItem-root': {
-                  padding: '10px 20px',
+                  padding: '12px 20px',
                   '&:hover': {
                     backgroundColor: 'rgba(130, 170, 255, 0.2)',
                   },
@@ -128,37 +125,49 @@ const IndicatorDropdown = ({ indicator, handleIndicatorChange }) => {
             <ListItemIcon>
               <BarChartIcon sx={{ color: 'primary.main' }} />
             </ListItemIcon>
-            <Typography>GDP Growth (Annual %)</Typography>
+            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              GDP Growth (Annual %)
+            </Typography>
           </MenuItem>
           <MenuItem value="FX Reserves">
             <ListItemIcon>
               <SavingsIcon sx={{ color: 'secondary.main' }} />
             </ListItemIcon>
-            <Typography>FX Reserves</Typography>
+            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              FX Reserves
+            </Typography>
           </MenuItem>
           <MenuItem value="Government Debt-to-GDP">
             <ListItemIcon>
               <TimelineIcon sx={{ color: 'primary.main' }} />
             </ListItemIcon>
-            <Typography>Government Debt-to-GDP</Typography>
+            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              Government Debt-to-GDP
+            </Typography>
           </MenuItem>
           <MenuItem value="Balance of Trade">
             <ListItemIcon>
               <TrendingUpIcon sx={{ color: 'secondary.main' }} />
             </ListItemIcon>
-            <Typography>Balance of Trade</Typography>
+            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              Balance of Trade
+            </Typography>
           </MenuItem>
           <MenuItem value="Inflation">
             <ListItemIcon>
               <ShowChartIcon sx={{ color: 'primary.main' }} />
             </ListItemIcon>
-            <Typography>Inflation</Typography>
+            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              Inflation
+            </Typography>
           </MenuItem>
           <MenuItem value="Unemployment Rate">
             <ListItemIcon>
               <WorkIcon sx={{ color: 'secondary.main' }} />
             </ListItemIcon>
-            <Typography>Unemployment Rate</Typography>
+            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              Unemployment Rate
+            </Typography>
           </MenuItem>
         </Select>
       </FormControl>

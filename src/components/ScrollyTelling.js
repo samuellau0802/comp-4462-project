@@ -9,13 +9,12 @@ const ScrollyTelling = ({ onComplete }) => {
   const [yearRange] = useState([2010, 2020]);
   const [indicator] = useState('GDP growth (annual %)');
 
-  // Define the scrolly-telling steps
   const steps = [
     {
       id: 'intro',
-      title: 'Introduction',
+      title: 'A World of Correlations',
       description:
-        'This map shows the correlation between Stock Price and GDP growth over time. This visualization allows retail investors to explore patterns in macroeconomic data and uncover insights that can guide investment decisions.',
+        'Explore how Stock Price and GDP growth intertwine across nations. This visual journey empowers investors with actionable insights into macroeconomic trends.',
       action: () => {
         setPosition({ coordinates: [0, 0], zoom: 1 });
         setHighlightedCountry(null);
@@ -23,9 +22,9 @@ const ScrollyTelling = ({ onComplete }) => {
     },
     {
       id: 'focus-usa',
-      title: 'Focus on the USA',
+      title: 'The Pulse of the USA',
       description:
-        'Notice how the USA stands out with its high correlation between GDP growth and stock prices. Retail investors can use this data to understand how economic growth impacts stock market trends.',
+        'See how the United States exemplifies a strong link between economic growth and market performance, guiding investment decisions in key sectors.',
       action: () => {
         setPosition({ coordinates: [-95, 37], zoom: 4 });
         setHighlightedCountry('United States');
@@ -33,9 +32,9 @@ const ScrollyTelling = ({ onComplete }) => {
     },
     {
       id: 'example',
-      title: 'Example Insight for Investors',
+      title: 'Uncover Insights',
       description:
-        'For instance, during periods of strong GDP growth in the USA, sectors such as technology and consumer discretionary often outperform. A retail investor could use this pattern to allocate more resources to these sectors during economic expansions.',
+        'During GDP growth spikes, technology and consumer discretionary sectors thrive. Such patterns illuminate pathways for strategic portfolio decisions.',
       action: () => {
         setPosition({ coordinates: [-95, 37], zoom: 4 });
         setHighlightedCountry('United States');
@@ -43,9 +42,9 @@ const ScrollyTelling = ({ onComplete }) => {
     },
     {
       id: 'compare-europe',
-      title: 'Comparing Europe',
+      title: 'Across the Atlantic',
       description:
-        'Let’s compare the European countries. Differences in GDP growth correlation highlight varied economic cycles, helping investors diversify their portfolio geographically.',
+        'Contrast Europe’s economic cycles. Diversify globally by uncovering how varied GDP correlations shape opportunities.',
       action: () => {
         setPosition({ coordinates: [10, 50], zoom: 3 });
         setHighlightedCountry(null);
@@ -53,9 +52,9 @@ const ScrollyTelling = ({ onComplete }) => {
     },
     {
       id: 'conclusion',
-      title: 'Conclusion',
+      title: 'Your Investment Journey',
       description:
-        'We have explored how different countries correlate with GDP growth. This data-driven approach enables retail investors to make informed decisions based on macroeconomic trends.',
+        'From the USA to Europe, explore how macroeconomic trends shape markets. A new frontier for smarter, data-driven investments awaits.',
       action: () => {
         setPosition({ coordinates: [0, 0], zoom: 1 });
         setHighlightedCountry(null);
@@ -74,8 +73,8 @@ const ScrollyTelling = ({ onComplete }) => {
 
     return (
       <div ref={ref} className="step" style={stepStyle}>
-        <h2>{step.title}</h2>
-        <p>{step.description}</p>
+        <h2 style={stepTitleStyle}>{step.title}</h2>
+        <p style={stepDescriptionStyle}>{step.description}</p>
       </div>
     );
   };
@@ -102,47 +101,81 @@ const ScrollyTelling = ({ onComplete }) => {
         {steps.map((step) => (
           <Step key={step.id} step={step} />
         ))}
-        <div style={{ padding: '20px', textAlign: 'center', position: 'relative', top: '-20vh' }}>
-          <Button variant="contained" color="primary" onClick={handleExit}>
-            Exit Tour and Explore the Map
-          </Button>
-        </div>
+      </div>
+
+      <div style={exitButtonContainerStyle}>
+        <Button variant="contained" color="primary" onClick={handleExit} style={exitButtonStyle}>
+          Exit Tour and Explore the Map
+        </Button>
       </div>
     </div>
   );
 };
 
+// Styles
 const appStyle = {
   display: 'flex',
   position: 'relative',
-  overflow: 'hidden',
+  height: '100vh',
+  backgroundColor: '#000000',
+  color: '#ffffff',
 };
 
 const mapContainerStyle = {
   position: 'sticky',
-  top: '0',
-  height: '100vh',
-  flex: '1',
-  padding: '30px',
-  background: 'linear-gradient(135deg, #121212, #1c1c1c)',
-  borderRadius: '20px',
-  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.8)',
+  top: 0,
+  flex: 1,
+  background: 'linear-gradient(to bottom, #1c1c1e, #000000)',
+  borderRadius: '30px',
+  margin: '30px',
+  boxShadow: '0px 20px 50px rgba(0, 0, 0, 0.9)',
 };
 
 const scrollyTellingStyle = {
-  flex: '1',
-  overflowY: 'auto',
-  height: '100vh',
+  flex: 1,
+  overflowY: 'scroll',
+  padding: '20px 40px',
+  fontFamily: 'San Francisco, Arial, sans-serif',
+  WebkitFontSmoothing: 'antialiased',
 };
 
 const stepStyle = {
-  minHeight: '100vh',
-  padding: '50px',
+  minHeight: '80vh', // Adjusted height to bring the content higher
+  padding: '40px 20px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
-  color: '#ffffff',
-  backgroundColor: '#121212',
+  justifyContent: 'flex-start',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  marginBottom: '10px',
+};
+
+const stepTitleStyle = {
+  fontSize: '3rem',
+  fontWeight: 600,
+  marginBottom: '10px',
+  color: '#f9f9f9',
+};
+
+const stepDescriptionStyle = {
+  fontSize: '1.3rem',
+  lineHeight: '1.5',
+  color: '#e4e4e4',
+};
+
+const exitButtonContainerStyle = {
+  position: 'fixed',
+  bottom: '20px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  zIndex: 1000,
+};
+
+const exitButtonStyle = {
+  padding: '10px 20px',
+  fontSize: '1rem',
+  fontWeight: 'bold',
+  borderRadius: '20px',
+  boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
 };
 
 export default ScrollyTelling;
