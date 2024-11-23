@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simple-maps';
 import * as d3 from 'd3';
 import geodata from '../data/world-110m.json';
@@ -21,6 +21,18 @@ const CustomTooltip = styled(({ className, ...props }) => (
 
 const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
   const colorScale = useMemo(() => d3.scaleSequential(d3.interpolateRdYlGn).domain([-1, 1]), []);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight - 100);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight - 100);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const getGeographyStyle = useCallback(
     (indicatorValue) => ({
@@ -191,7 +203,7 @@ const ChoroplethMap = ({ yearRange, indicator, onClick, style }) => {
         </div>
       </div>
 
-      <div style={{ width: '100%', height: '600px', marginBottom: '20px' }}>
+      <div style={{ width: '100%', height: `${windowHeight * 0.5}px`, marginBottom: '20px' }}>
         <ComposableMap projection="geoMercator">
           <ZoomableGroup
             center={position.coordinates}

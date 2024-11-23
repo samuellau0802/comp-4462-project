@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import './App.css';
 import { Container } from "@mui/material";
 import { Allotment } from "allotment";
@@ -7,9 +7,8 @@ import Screen from "./components/Screen";
 import Header from "./components/Header";
 
 const App = () => {
-  const divRef = useRef(null);
   const [isSplit, setIsSplit] = useState(false);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight );
   const [screenSize, setScreenSize] = useState('xl');
 
   useEffect(() => {
