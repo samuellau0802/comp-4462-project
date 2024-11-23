@@ -77,7 +77,7 @@ const Screen = ({ windowHeight }) => {
           </Allotment.Pane>
 
           {selectedCountry && (
-            <Allotment.Pane preferredSize={550}>
+            <Allotment.Pane preferredSize={600}>
               <LineChartComponent
                 country={selectedCountry}
                 yearRange={curYearRange}
