@@ -19,15 +19,19 @@ const Screen = ({ windowHeight }) => {
 
   const handleYearRangeChange = useCallback((newRange) => {
     setCurYearRange(newRange);
-    const updatedCorrelation = computeCorrelation(selectedCountry, curYearRange, "Stock Price", indicator);
-    setSelectedCountryCorrelation(updatedCorrelation);
-  }, [selectedCountry, indicator, curYearRange]);
-
+    setSelectedCountryCorrelation(prevCorrelation => {
+      const updatedCorrelation = computeCorrelation(selectedCountry, newRange, "Stock Price", indicator);
+      return updatedCorrelation;
+    });
+  }, [selectedCountry, indicator]);
 
   const handleIndicatorChange = useCallback((event) => {
-    setIndicator(event.target.value);
-    const updatedCorrelation = computeCorrelation(selectedCountry, curYearRange, "Stock Price", indicator);
-    setSelectedCountryCorrelation(updatedCorrelation);
+    const newIndicator = event.target.value;
+    setIndicator(newIndicator);
+    setSelectedCountryCorrelation(prevCorrelation => {
+      const updatedCorrelation = computeCorrelation(selectedCountry, curYearRange, "Stock Price", newIndicator);
+      return updatedCorrelation;
+    });
   }, [selectedCountry, curYearRange]);
 
   const handleSelectedCountry = useCallback((country, correlation) => {
