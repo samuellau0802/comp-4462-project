@@ -223,9 +223,10 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis
                                     dataKey="year"
-                                    interval="preserveStartEnd"
+                                    // interval="preserveStartEnd"
                                     label={{fontSize: 12}}
                                     tick={{ fontSize: 12 }}
+                                    interval={1}
                                     />
                                 {isDual ? (
                                     <>
