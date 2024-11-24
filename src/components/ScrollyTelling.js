@@ -38,7 +38,7 @@ const ScrollyTelling = ({ onComplete }) => {
       country: 'United States of America',
       coordinates: [-95, 37],
       zoom: 4,
-      correlation: 0.75,
+      correlation: -0.49,
     },
     {
       id: 'compare-europe',
@@ -51,7 +51,7 @@ const ScrollyTelling = ({ onComplete }) => {
       country: 'Germany',
       coordinates: [10, 50],
       zoom: 4,
-      correlation: 0.65,
+      correlation: -0.51,
     },
     {
       id: 'conclusion',
@@ -161,7 +161,7 @@ const ScrollyTelling = ({ onComplete }) => {
       <div className="map-container" style={mapContainerStyle}>
         <ChoroplethMap
           yearRange={yearRange}
-          indicator={indicator1}
+          indicator={indicator2}
           position={position}
           setPosition={setPosition}
           highlightedCountry={highlightedCountry}

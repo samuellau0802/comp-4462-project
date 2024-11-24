@@ -59,7 +59,7 @@ export default function YearRangeSlider({ startYear, endYear, onChange }) {
     <ThemeProvider theme={darkTheme}>
       <div
         style={{
-          height: '64px',
+          height: '50px',
           padding: '8px 16px',
           marginTop: '16px',
           background:
