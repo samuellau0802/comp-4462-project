@@ -19,8 +19,10 @@ const ScrollyTelling = ({ onComplete }) => {
     {
       id: 'intro',
       title: 'A World of Correlations',
-      description:
-        'Explore how Stock Price and GDP growth intertwine across nations. This visual journey empowers investors with actionable insights into macroeconomic trends.',
+      description: [
+        'Delve into the intricate relationship between stock price movements and GDP growth across various nations. By visualizing this dynamic interplay, we uncover how economic growth drives market performance and vice versa, shedding light on the interconnectedness of financial markets and macroeconomic indicators.',
+        'This comprehensive exploration offers investors a powerful tool to identify actionable insights, enabling them to navigate global economic trends with precision and strategically align their investment decisions to capitalize on opportunities presented by shifting economic landscapes.',
+      ],
       chart: false,
       country: null,
       coordinates: [0, 0],
@@ -33,7 +35,7 @@ const ScrollyTelling = ({ onComplete }) => {
       description:
         'See how the United States exemplifies a strong link between economic growth and market performance, guiding investment decisions in key sectors.',
       chart: true,
-      country: 'United States of America', // Ensure this matches your data
+      country: 'United States of America',
       coordinates: [-95, 37],
       zoom: 4,
       correlation: 0.75,
@@ -41,10 +43,12 @@ const ScrollyTelling = ({ onComplete }) => {
     {
       id: 'compare-europe',
       title: 'Across the Atlantic',
-      description:
-        'Contrast Europe’s economic cycles. Diversify globally by uncovering how varied GDP correlations shape opportunities.',
+      description: [
+        'Contrast Europe’s economic cycles with those of the USA. Explore how varying GDP growth rates and market trends create opportunities for portfolio diversification.',
+        'Understanding these differences can help investors identify sectors and regions poised for growth, enabling smarter global investment strategies.',
+      ],
       chart: true,
-      country: 'Germany', // Ensure this matches your data
+      country: 'Germany',
       coordinates: [10, 50],
       zoom: 4,
       correlation: 0.65,
@@ -119,7 +123,15 @@ const ScrollyTelling = ({ onComplete }) => {
     return (
       <div ref={ref} className="step" style={stepStyle}>
         <h2 style={stepTitleStyle}>{step.title}</h2>
-        <p style={stepDescriptionStyle}>{step.description}</p>
+        {Array.isArray(step.description)
+          ? step.description.map((paragraph, idx) => (
+              <p key={idx} style={stepDescriptionStyle}>
+                {paragraph}
+              </p>
+            ))
+          : (
+            <p style={stepDescriptionStyle}>{step.description}</p>
+          )}
         {step.chart && highlightedCountry && chartData.length > 0 && (
           <LineChartComponent
             country={highlightedCountry}
