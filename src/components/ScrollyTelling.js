@@ -9,8 +9,8 @@ const ScrollyTelling = ({ onComplete }) => {
   const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
   const [highlightedCountry, setHighlightedCountry] = useState(null);
   const [yearRange] = useState([2010, 2020]);
-  const [indicator1] = useState('GDP growth (annual %)');
-  const [indicator2] = useState('Index Price');
+  const [indicator2] = useState('GDP growth (annual %)');
+  const [indicator1] = useState('Index Price');
   const [correlation, setCorrelation] = useState(null);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
