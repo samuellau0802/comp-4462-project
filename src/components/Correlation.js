@@ -24,7 +24,7 @@ const computeCorrelation = (country, yearRange, indicator1, indicator2) => {
   // Collect values for the specified indicators within the year range
   const values = [];
   for (let year = startYear; year <= endYear; year++) {
-    const yearData = data[country][year];
+    const yearData = data[country]['Economic Data'][year];
     if (yearData) {
       const indicatorValue1 = yearData[indicator1];
       const indicatorValue2 = yearData[indicator2];

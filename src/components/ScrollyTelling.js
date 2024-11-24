@@ -10,7 +10,7 @@ const ScrollyTelling = ({ onComplete }) => {
   const [highlightedCountry, setHighlightedCountry] = useState(null);
   const [yearRange] = useState([2010, 2020]);
   const [indicator1] = useState('GDP growth (annual %)');
-  const [indicator2] = useState('Stock Price');
+  const [indicator2] = useState('Index Price');
   const [correlation, setCorrelation] = useState(null);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
@@ -20,7 +20,7 @@ const ScrollyTelling = ({ onComplete }) => {
       id: 'intro',
       title: 'A World of Correlations',
       description:
-        'Explore how Stock Price and GDP growth intertwine across nations. This visual journey empowers investors with actionable insights into macroeconomic trends.',
+        'Explore how Index Price and GDP growth intertwine across nations. This visual journey empowers investors with actionable insights into macroeconomic trends.',
       chart: false,
       country: null,
       coordinates: [0, 0],
@@ -80,7 +80,7 @@ const ScrollyTelling = ({ onComplete }) => {
     if (!data[country]) return chartData;
 
     for (let year = startYear; year <= endYear; year++) {
-      const yearData = data[country][year];
+      const yearData = data[country]['Economic Data'][year];
       if (yearData) {
         const value1 = parseFloat(yearData[indicator1] || 'NaN');
         const value2 = parseFloat(yearData[indicator2] || 'NaN');

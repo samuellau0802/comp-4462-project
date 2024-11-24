@@ -30,6 +30,22 @@ const CustomTooltip = ({ active, payload, label }) => {
     return null;
 };
 
+const getLabelFormatter = (indicator, country) => {
+    const currency = data[country]?.Currency || '';
+    const indicatorMap = {
+        'Inflation': 'Inflation (%)',
+        'FX Reserves': `FX Reserves (${currency})`,
+        'Unemployment Rate': 'Unemployment Rate (%)',
+        'Balance of Trade': `Balance of Trade (${currency})`,
+        'Government Debt-to-GDP': 'Government Debt-to-GDP (%)',
+        'GDP growth (annual %)': 'GDP growth (annual %)',
+        'Index Price': `Index Price (${currency})`
+    };
+
+    return indicatorMap[indicator] || indicator;
+};
+
+
 const getDataForCountry = (country, yearRange, indicator1, indicator2) => {
     const [startYear, endYear] = yearRange;
     const chartData = [];
@@ -39,9 +55,9 @@ const getDataForCountry = (country, yearRange, indicator1, indicator2) => {
     }
 
     for (let year = startYear; year <= endYear; year++) {
-        if (data[country][year]) {
-            const indicatorValue1 = parseFloat(data[country][year][indicator1]);
-            const indicatorValue2 = parseFloat(data[country][year][indicator2]);
+        if (data[country]['Economic Data'][year]) {
+            const indicatorValue1 = parseFloat(data[country]['Economic Data'][year][indicator1]);
+            const indicatorValue2 = parseFloat(data[country]['Economic Data'][year][indicator2]);
 
             if (!isNaN(indicatorValue1) && !isNaN(indicatorValue2)) {
                 chartData.push({
@@ -216,7 +232,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                         <YAxis
                                             yAxisId="left"
                                             label={{
-                                                value: "Index Price",
+                                                value: getLabelFormatter("Index Price", country),
                                                 angle: -90,
                                                 position: 'insideLeft',
                                                 offset: 0,
@@ -232,7 +248,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                             yAxisId="right"
                                             orientation="right"
                                             label={{
-                                                value: indicator2,
+                                                value: getLabelFormatter(indicator2, country),
                                                 angle: 90,
                                                 position: 'insideRight',
                                                 offset: 0,
