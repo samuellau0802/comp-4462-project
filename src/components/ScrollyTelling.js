@@ -33,7 +33,7 @@ const ScrollyTelling = ({ onComplete }) => {
       id: 'focus-usa',
       title: 'The Pulse of the USA',
       description:
-        'See how the United States exemplifies a strong link between economic growth and market performance, guiding investment decisions in key sectors.',
+        'See how the United States exemplifies a negative correlation between economic growth and market performance, guiding investment decisions in key sectors.',
       chart: true,
       country: 'United States of America',
       coordinates: [-95, 37],
