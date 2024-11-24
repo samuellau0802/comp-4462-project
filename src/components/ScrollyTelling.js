@@ -1,96 +1,155 @@
 import React, { useState, useEffect } from 'react';
 import ChoroplethMap from './ChoroplethMap';
+import LineChartComponent from './LineChart';
 import { useInView } from 'react-intersection-observer';
 import { Button } from '@mui/material';
+import data from '../data/countries_data_2008_2023.json'; // Adjust the path as needed
 
 const ScrollyTelling = ({ onComplete }) => {
   const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
   const [highlightedCountry, setHighlightedCountry] = useState(null);
   const [yearRange] = useState([2010, 2020]);
-  const [indicator] = useState('GDP growth (annual %)');
+  const [indicator1] = useState('GDP growth (annual %)');
+  const [indicator2] = useState('Stock Price');
+  const [correlation, setCorrelation] = useState(null);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
+  // Steps configuration
   const steps = [
     {
       id: 'intro',
       title: 'A World of Correlations',
       description:
         'Explore how Stock Price and GDP growth intertwine across nations. This visual journey empowers investors with actionable insights into macroeconomic trends.',
-      action: () => {
-        setPosition({ coordinates: [0, 0], zoom: 1 });
-        setHighlightedCountry(null);
-      },
+      chart: false,
+      country: null,
+      coordinates: [0, 0],
+      zoom: 1,
+      correlation: null,
     },
     {
       id: 'focus-usa',
       title: 'The Pulse of the USA',
       description:
         'See how the United States exemplifies a strong link between economic growth and market performance, guiding investment decisions in key sectors.',
-      action: () => {
-        setPosition({ coordinates: [-95, 37], zoom: 4 });
-        setHighlightedCountry('United States');
-      },
-    },
-    {
-      id: 'example',
-      title: 'Uncover Insights',
-      description:
-        'During GDP growth spikes, technology and consumer discretionary sectors thrive. Such patterns illuminate pathways for strategic portfolio decisions.',
-      action: () => {
-        setPosition({ coordinates: [-95, 37], zoom: 4 });
-        setHighlightedCountry('United States');
-      },
+      chart: true,
+      country: 'United States of America', // Ensure this matches your data
+      coordinates: [-95, 37],
+      zoom: 4,
+      correlation: 0.75,
     },
     {
       id: 'compare-europe',
       title: 'Across the Atlantic',
       description:
         'Contrast Europe’s economic cycles. Diversify globally by uncovering how varied GDP correlations shape opportunities.',
-      action: () => {
-        setPosition({ coordinates: [10, 50], zoom: 3 });
-        setHighlightedCountry(null);
-      },
+      chart: true,
+      country: 'Germany', // Ensure this matches your data
+      coordinates: [10, 50],
+      zoom: 4,
+      correlation: 0.65,
     },
     {
       id: 'conclusion',
       title: 'Your Investment Journey',
       description:
         'From the USA to Europe, explore how macroeconomic trends shape markets. A new frontier for smarter, data-driven investments awaits.',
-      action: () => {
-        setPosition({ coordinates: [0, 0], zoom: 1 });
-        setHighlightedCountry(null);
-      },
+      chart: false,
+      country: null,
+      coordinates: [0, 0],
+      zoom: 1,
+      correlation: null,
     },
   ];
 
-  const Step = ({ step }) => {
-    const { ref, inView } = useInView({ threshold: 0.5 });
+  // Update position and highlighted country based on the current step
+  useEffect(() => {
+    const step = steps[currentStepIndex];
+    if (step) {
+      setPosition({ coordinates: step.coordinates, zoom: step.zoom });
+      setHighlightedCountry(step.country);
+      setCorrelation(step.correlation);
+    }
+  }, [currentStepIndex]);
+
+  // Data fetching function
+  const getDataForCountry = (country, yearRange, indicator1, indicator2) => {
+    const [startYear, endYear] = yearRange;
+    const chartData = [];
+
+    if (!data[country]) return chartData;
+
+    for (let year = startYear; year <= endYear; year++) {
+      const yearData = data[country][year];
+      if (yearData) {
+        const value1 = parseFloat(yearData[indicator1] || 'NaN');
+        const value2 = parseFloat(yearData[indicator2] || 'NaN');
+
+        if (!isNaN(value1) && !isNaN(value2)) {
+          chartData.push({
+            year: year,
+            [indicator1]: value1,
+            [indicator2]: value2,
+          });
+        }
+      }
+    }
+
+    return chartData;
+  };
+
+  // Step Component
+  const Step = ({ step, index }) => {
+    const { ref, inView } = useInView({
+      threshold: 0.7, // Adjusted to ensure only one step is active at a time
+      triggerOnce: false,
+    });
 
     useEffect(() => {
       if (inView) {
-        step.action();
+        setCurrentStepIndex(index);
       }
-    }, [inView, step]);
+    }, [inView, index]);
+
+    const chartData =
+      step.chart && highlightedCountry
+        ? getDataForCountry(highlightedCountry, yearRange, indicator1, indicator2)
+        : [];
 
     return (
       <div ref={ref} className="step" style={stepStyle}>
         <h2 style={stepTitleStyle}>{step.title}</h2>
         <p style={stepDescriptionStyle}>{step.description}</p>
+        {step.chart && highlightedCountry && chartData.length > 0 && (
+          <LineChartComponent
+            country={highlightedCountry}
+            yearRange={yearRange}
+            indicator1={indicator1}
+            indicator2={indicator2}
+            correlation={correlation}
+          />
+        )}
+        {step.chart && highlightedCountry && chartData.length === 0 && (
+          <p style={noDataStyle}>No data available for the specified range.</p>
+        )}
       </div>
     );
   };
 
+  // Exit button handler
   const handleExit = () => {
     if (onComplete) {
       onComplete();
     }
   };
 
+  // Render the scrolly telling component
   return (
     <div className="app" style={appStyle}>
       <div className="map-container" style={mapContainerStyle}>
         <ChoroplethMap
           yearRange={yearRange}
-          indicator={indicator}
+          indicator={indicator1}
           position={position}
           setPosition={setPosition}
           highlightedCountry={highlightedCountry}
@@ -98,13 +157,18 @@ const ScrollyTelling = ({ onComplete }) => {
       </div>
 
       <div className="scrolly-telling" style={scrollyTellingStyle}>
-        {steps.map((step) => (
-          <Step key={step.id} step={step} />
+        {steps.map((step, index) => (
+          <Step key={step.id} step={step} index={index} />
         ))}
       </div>
 
       <div style={exitButtonContainerStyle}>
-        <Button variant="contained" color="primary" onClick={handleExit} style={exitButtonStyle}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleExit}
+          style={exitButtonStyle}
+        >
           Exit Tour and Explore the Map
         </Button>
       </div>
@@ -140,7 +204,7 @@ const scrollyTellingStyle = {
 };
 
 const stepStyle = {
-  minHeight: '80vh', // Adjusted height to bring the content higher
+  minHeight: '80vh',
   padding: '40px 20px',
   display: 'flex',
   flexDirection: 'column',
@@ -160,6 +224,12 @@ const stepDescriptionStyle = {
   fontSize: '1.3rem',
   lineHeight: '1.5',
   color: '#e4e4e4',
+};
+
+const noDataStyle = {
+  fontSize: '1rem',
+  color: '#FF6B6B',
+  fontStyle: 'italic',
 };
 
 const exitButtonContainerStyle = {
