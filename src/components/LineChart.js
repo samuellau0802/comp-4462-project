@@ -13,6 +13,23 @@ import data from '../data/countries_data_2008_2023.json';
 import { Button, ButtonGroup, Box, Typography, Card, CardContent } from '@mui/material';
 import * as d3 from 'd3';
 
+const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+        return (
+            <div className="custom-tooltip" style={{ backgroundColor: '#333', border: '1px solid #ccc', padding: '10px', borderRadius: '5px', color: '#fff' }}>
+                <p className="label" style={{ margin: 0, fontWeight: 'bold', color: '#fff', fontSize: '16px' }}>{`Year: ${label}`}</p>
+                {payload.map((entry, index) => (
+                    <p key={`item-${index}`} style={{ margin: 0, color: entry.color, fontSize: '14px' }}>
+                        {`${entry.name}: ${formatNumber(entry.value)}`}
+                    </p>
+                ))}
+            </div>
+        );
+    }
+
+    return null;
+};
+
 const getDataForCountry = (country, yearRange, indicator1, indicator2) => {
     const [startYear, endYear] = yearRange;
     const chartData = [];
@@ -214,7 +231,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                             tick={{ fontSize: 13, fill: "#dbde81" }} // Line color for indicator2
                                             tickFormatter={formatNumber}
                                         />
-                                        <Tooltip formatter={formatNumber} />
+                                        <Tooltip content={<CustomTooltip />} />
                                         <Legend />
                                         <Line
                                             yAxisId="left"
@@ -245,7 +262,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                             tick={{ fontSize: 14 }}
                                             tickFormatter={formatNumber}
                                         />
-                                        <Tooltip formatter={formatNumber} />
+                                        <Tooltip content={<CustomTooltip />} />
                                         <Legend />
                                         <Line
                                             type="monotone"
