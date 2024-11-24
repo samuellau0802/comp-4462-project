@@ -108,7 +108,7 @@ const Header = ({ handleSplit, isSplit, startScrollyTelling }) => {
                 animation: `${colorCycleAnimation} 10s infinite`, // Color synced with AppBar
               }}
             >
-              Macro-Economic Data and Stock Prices Visualization
+              Macro-Economic Data and Index Prices Visualization
             </Typography>
 
             <Button

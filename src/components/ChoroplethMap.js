@@ -125,7 +125,7 @@ const ChoroplethMap = ({
       const indicatorValue = computeCorrelation(
         countryName,
         yearRange,
-        'Stock Price',
+        'Index Price',
         indicator
       );
 

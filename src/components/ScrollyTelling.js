@@ -14,7 +14,7 @@ const ScrollyTelling = ({ onComplete }) => {
       id: 'intro',
       title: 'A World of Correlations',
       description:
-        'Explore how Stock Price and GDP growth intertwine across nations. This visual journey empowers investors with actionable insights into macroeconomic trends.',
+        'Explore how Index Price and GDP growth intertwine across nations. This visual journey empowers investors with actionable insights into macroeconomic trends.',
       action: () => {
         setPosition({ coordinates: [0, 0], zoom: 1 });
         setHighlightedCountry(null);

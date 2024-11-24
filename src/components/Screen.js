@@ -25,7 +25,7 @@ const Screen = ({ windowHeight }) => {
         const updatedCorrelation = computeCorrelation(
           selectedCountry,
           newRange,
-          'Stock Price',
+          'Index Price',
           indicator
         );
         setSelectedCountryCorrelation(updatedCorrelation);
@@ -42,7 +42,7 @@ const Screen = ({ windowHeight }) => {
         const updatedCorrelation = computeCorrelation(
           selectedCountry,
           curYearRange,
-          'Stock Price',
+          'Index Price',
           newIndicator
         );
         setSelectedCountryCorrelation(updatedCorrelation);
@@ -147,7 +147,7 @@ const Screen = ({ windowHeight }) => {
             <LineChartComponent
               country={selectedCountry}
               yearRange={curYearRange}
-              indicator1={'Stock Price'}
+              indicator1={'Index Price'}
               indicator2={indicator}
               correlation={selectedCountryCorrelation}
             />
