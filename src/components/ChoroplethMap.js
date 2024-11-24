@@ -45,6 +45,18 @@ const ChoroplethMap = ({
   const [position, setPosition] = useState(
     externalPosition || { coordinates: [0, 0], zoom: 1 }
   );
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight - 100);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight - 100);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (externalPosition) {
@@ -262,7 +274,7 @@ const ChoroplethMap = ({
           </button>
         </div>
       </div>
-      <div style={{ height: '600px', width: '100%' }}>
+      <div style={{ height: `${windowHeight * 0.5}px`, width: '100%' }}>
         <ComposableMap projection="geoMercator">
           <ZoomableGroup
             center={position.coordinates}
@@ -274,6 +286,52 @@ const ChoroplethMap = ({
             </Geographies>
           </ZoomableGroup>
         </ComposableMap>
+      </div>
+      {/* Updated Color Gradient Legend */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '10px',
+          background: 'rgba(0, 0, 0, 0.8)',
+          borderRadius: '12px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.6)',
+          width: '100%',
+          marginTop: '10px',
+        }}
+      >
+        <svg
+          viewBox="0 0 300 20"
+          preserveAspectRatio="none"
+          style={{ width: '100%', height: '20px' }}
+        >
+          <defs>
+            <linearGradient id="colorGradient" x1="-50%" y1="0%" x2="60%" y2="0%">
+              <stop offset="0%" style={{ stopColor: d3.interpolateRdYlGn(-1), stopOpacity: 1 }} />
+              <stop offset="35%" style={{ stopColor: d3.interpolateRdYlGn(-0.5), stopOpacity: 1 }} />
+              <stop offset="75%" style={{ stopColor: d3.interpolateRdYlGn(0), stopOpacity: 1 }} />
+              <stop offset="100%" style={{ stopColor: d3.interpolateRdYlGn(1), stopOpacity: 1 }} />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="300" height="20" fill="url(#colorGradient)" />
+        </svg>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
+            color: '#e0e0e0',
+            fontSize: '0.9rem',
+            marginTop: '10px',
+            position: 'relative',
+          }}
+        >
+          <span style={{ position: 'absolute', left: '0'}}>-1</span>
+          <span style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>0</span>
+          <span style={{ position: 'absolute', right: '0' }}>1</span>
+        </div>
       </div>
     </div>
   );

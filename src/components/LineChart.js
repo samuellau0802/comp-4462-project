@@ -208,10 +208,10 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                                 position: 'insideRight',
                                                 offset: 0,
                                                 fontSize: 13,
-                                                fill: "#82ca9d" // Line color for indicator2
+                                                fill: "#dbde81" // Line color for indicator2
                                             }}
                                             interval="preserveStartEnd"
-                                            tick={{ fontSize: 13, fill: "#82ca9d" }} // Line color for indicator2
+                                            tick={{ fontSize: 13, fill: "#dbde81" }} // Line color for indicator2
                                             tickFormatter={formatNumber}
                                         />
                                         <Tooltip formatter={formatNumber} />
@@ -227,7 +227,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                             yAxisId="right"
                                             type="monotone"
                                             dataKey={indicator2}
-                                            stroke="#82ca9d"
+                                            stroke="#dbde81"
                                             connectNulls
                                         />
                                     </>
@@ -256,7 +256,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                         <Line
                                             type="monotone"
                                             dataKey={indicator2}
-                                            stroke="#82ca9d"
+                                            stroke="#dbde81"
                                             connectNulls
                                         />
                                     </>
