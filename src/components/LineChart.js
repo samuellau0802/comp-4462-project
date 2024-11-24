@@ -157,10 +157,21 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
 
     return (
         <Box>
-            <Typography variant="h6" gutterBottom>
+            <Typography
+                variant="h5"
+                gutterBottom
+                align="center"
+                sx={{
+                    marginTop: 4,
+                    marginBottom: 4,
+                    fontWeight: "bold",
+                    // textTransform: 'uppercase',
+                    letterSpacing: 1,
+                    color: '#FAFAFA',
+                }}
+            >
                 {`${country}: ${indicator1} and ${indicator2} (${yearRange[0]} - ${yearRange[1]})`}
             </Typography>
-
             <Box display="flex" flexDirection="row" alignItems="flex-start">
                 <Box display="flex" flexDirection="column" mr={4}>
                     <CorrelationCard correlation={correlation} />
@@ -205,12 +216,13 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                         <YAxis
                                             yAxisId="left"
                                             label={{
-                                                value: indicator1,
+                                                value: "Index Price",
                                                 angle: -90,
                                                 position: 'insideLeft',
-                                                offset: 10,
+                                                offset: 0,
                                                 fontSize: 13,
-                                                fill: "#8884d8" // Line color for indicator1
+                                                fill: "#8884d8", // Line color for indicator1
+                                                fontWeight: "Bold",
                                             }}
                                             interval="preserveStartEnd"
                                             tick={{ fontSize: 13, fill: "#8884d8" }} // Line color for indicator1
@@ -225,7 +237,8 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                                 position: 'insideRight',
                                                 offset: 0,
                                                 fontSize: 13,
-                                                fill: "#dbde81" // Line color for indicator2
+                                                fill: "#dbde81", // Line color for indicator2
+                                                fontWeight: "Bold",
                                             }}
                                             interval="preserveStartEnd"
                                             tick={{ fontSize: 13, fill: "#dbde81" }} // Line color for indicator2
@@ -238,6 +251,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                             type="monotone"
                                             dataKey={indicator1}
                                             stroke="#8884d8"
+                                            name="Index Price"
                                             connectNulls
                                         />
                                         <Line
@@ -269,6 +283,7 @@ const LineChartComponent = ({ country, yearRange, indicator1, indicator2, correl
                                             dataKey={indicator1}
                                             stroke="#8884d8"
                                             connectNulls
+                                            name="Index Price"
                                         />
                                         <Line
                                             type="monotone"
