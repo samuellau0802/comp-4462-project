@@ -1489,152 +1489,152 @@
             }
         }
     },
-    "Congo": {
-        "Currency": "XAF",
+    "Dem. Rep. Congo": {
+        "Currency": "CDF",
         "Economic Data": {
             "2008": {
-                "Inflation": 4.95875092,
+                "Inflation": 17.30138457,
                 "Index Price": "NaN",
-                "Unemployment Rate": 19.954,
-                "Balance of Trade": 869277946.2,
+                "Unemployment Rate": 3.625,
+                "Balance of Trade": -151000000.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 3881458051.0,
-                "GDP growth (annual %)": 6.306375956
+                "FX Reserves": 77733370.44,
+                "GDP growth (annual %)": 6.225894269
             },
             "2009": {
-                "Inflation": 4.415003748,
+                "Inflation": 2.8,
                 "Index Price": 19444.4,
-                "Unemployment Rate": 19.854,
-                "Balance of Trade": -1371282200.0,
-                "Government Debt-to-GDP": 60.22694172,
-                "FX Reserves": 3806250384.0,
-                "GDP growth (annual %)": 11.63728886
+                "Unemployment Rate": 3.879,
+                "Balance of Trade": -1123100000.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 1035381388.0,
+                "GDP growth (annual %)": 2.85506401
             },
             "2010": {
-                "Inflation": 0.391525011,
+                "Inflation": 7.1,
                 "Index Price": 24996.97,
-                "Unemployment Rate": 19.379,
-                "Balance of Trade": 901208914.6,
-                "Government Debt-to-GDP": 25.48268447,
-                "FX Reserves": 4446850566.0,
-                "GDP growth (annual %)": 9.931265431
+                "Unemployment Rate": 4.096,
+                "Balance of Trade": -2173500000.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 1299652041.0,
+                "GDP growth (annual %)": 7.107976576
             },
             "2011": {
-                "Inflation": 1.759587043,
+                "Inflation": 15.31651591,
                 "Index Price": 28639.4,
-                "Unemployment Rate": 19.51,
-                "Balance of Trade": 2073140263.0,
+                "Unemployment Rate": 4.315,
+                "Balance of Trade": -1280602281.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 5641136196.0,
-                "GDP growth (annual %)": 2.205919363
+                "FX Reserves": 1267500303.0,
+                "GDP growth (annual %)": 6.87467089
             },
             "2012": {
-                "Inflation": 5.010187731,
+                "Inflation": 9.721828063,
                 "Index Price": 28469.81,
-                "Unemployment Rate": 19.573,
-                "Balance of Trade": 2421258746.0,
+                "Unemployment Rate": 4.485,
+                "Balance of Trade": -1260461518.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 5549563315.0,
-                "GDP growth (annual %)": 9.947153143
+                "FX Reserves": 1632551644.0,
+                "GDP growth (annual %)": 7.086898947
             },
             "2013": {
-                "Inflation": 4.631616197,
+                "Inflation": 0.808223101,
                 "Index Price": 34795.5,
-                "Unemployment Rate": 19.902,
-                "Balance of Trade": 1936952275.0,
+                "Unemployment Rate": 4.474,
+                "Balance of Trade": -3108803236.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 5245011451.0,
-                "GDP growth (annual %)": -0.712434452
+                "FX Reserves": 1678465312.0,
+                "GDP growth (annual %)": 8.481956636
             },
             "2014": {
-                "Inflation": 0.912139545,
+                "Inflation": 1.243038898,
                 "Index Price": 41482.39,
-                "Unemployment Rate": 19.781,
-                "Balance of Trade": 679779275.5,
+                "Unemployment Rate": 4.446,
+                "Balance of Trade": -1722614687.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 4926098059.0,
-                "GDP growth (annual %)": 6.646065409
+                "FX Reserves": 1556982978.0,
+                "GDP growth (annual %)": 9.470288099
             },
             "2015": {
-                "Inflation": 3.169097968,
+                "Inflation": 0.744198995,
                 "Index Price": 43969.96,
-                "Unemployment Rate": 20.2,
-                "Balance of Trade": -4630571434.0,
+                "Unemployment Rate": 4.456,
+                "Balance of Trade": -1483759412.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 2221497219.0,
-                "GDP growth (annual %)": 0.415193061
+                "FX Reserves": 1215934551.0,
+                "GDP growth (annual %)": 6.916167119
             },
             "2016": {
-                "Inflation": 3.190561797,
+                "Inflation": 2.885851073,
                 "Index Price": 45797.3,
-                "Unemployment Rate": 20.524,
-                "Balance of Trade": -3596012164.0,
+                "Unemployment Rate": 4.548,
+                "Balance of Trade": -1504159532.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 714352000.8,
-                "GDP growth (annual %)": -8.685243439
+                "FX Reserves": 708160749.2,
+                "GDP growth (annual %)": 2.399398911
             },
             "2017": {
-                "Inflation": 0.450063823,
+                "Inflation": "NaN",
                 "Index Price": 43901.99,
-                "Unemployment Rate": 20.887,
-                "Balance of Trade": "NaN",
+                "Unemployment Rate": 4.637,
+                "Balance of Trade": -1241424116.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 379984138.8,
-                "GDP growth (annual %)": -5.594773719
+                "FX Reserves": 695398162.0,
+                "GDP growth (annual %)": 3.726947659
             },
             "2018": {
-                "Inflation": 1.152778964,
+                "Inflation": "NaN",
                 "Index Price": 52533.04,
-                "Unemployment Rate": 20.938,
-                "Balance of Trade": "NaN",
+                "Unemployment Rate": 4.661,
+                "Balance of Trade": -1672321587.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 423617388.3,
-                "GDP growth (annual %)": -2.304317801
+                "FX Reserves": 665272095.0,
+                "GDP growth (annual %)": 5.8211211
             },
             "2019": {
-                "Inflation": 2.206073058,
+                "Inflation": "NaN",
                 "Index Price": 46726.59,
-                "Unemployment Rate": 20.608,
-                "Balance of Trade": 1632374163.0,
+                "Unemployment Rate": 4.642,
+                "Balance of Trade": -1693232061.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 988316008.0,
-                "GDP growth (annual %)": 1.124477074
+                "FX Reserves": 1194373485.0,
+                "GDP growth (annual %)": 4.384528874
             },
             "2020": {
-                "Inflation": 1.795371471,
+                "Inflation": "NaN",
                 "Index Price": 50816.05,
-                "Unemployment Rate": 22.373,
-                "Balance of Trade": 1440630928.0,
+                "Unemployment Rate": 5.369,
+                "Balance of Trade": -1052131626.0,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 1140500575.0,
-                "GDP growth (annual %)": -6.267777996
+                "FX Reserves": 747655324.3,
+                "GDP growth (annual %)": 1.735422767
             },
             "2021": {
-                "Inflation": 1.715642755,
+                "Inflation": "NaN",
                 "Index Price": 54379.58,
-                "Unemployment Rate": 22.077,
-                "Balance of Trade": 1715906879.0,
+                "Unemployment Rate": 5.273,
+                "Balance of Trade": -587406970.4,
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 828560334.6,
-                "GDP growth (annual %)": 1.01507338
+                "FX Reserves": 3467115961.0,
+                "GDP growth (annual %)": 6.200154011
             },
             "2022": {
-                "Inflation": 3.043443347,
+                "Inflation": "NaN",
                 "Index Price": 67052.4,
-                "Unemployment Rate": 20.261,
+                "Unemployment Rate": 4.585,
                 "Balance of Trade": "NaN",
-                "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 835649477.0,
-                "GDP growth (annual %)": 1.475356132
+                "Government Debt-to-GDP": 15.98969681,
+                "FX Reserves": "NaN",
+                "GDP growth (annual %)": 8.924447626
             },
             "2023": {
-                "Inflation": 4.301745636,
+                "Inflation": "NaN",
                 "Index Price": 66955.47,
-                "Unemployment Rate": 20.054,
+                "Unemployment Rate": 4.544,
                 "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 715391052.4,
-                "GDP growth (annual %)": 1.906864263
+                "FX Reserves": "NaN",
+                "GDP growth (annual %)": 8.560862509
             }
         }
     },
@@ -3277,152 +3277,152 @@
             }
         }
     },
-    "South Africa": {
+    "Central African Rep.": {
         "Currency": "ZAR",
         "Economic Data": {
             "2008": {
-                "Inflation": 10.07457552,
+                "Inflation": 9.258950994,
                 "Index Price": "NaN",
-                "Unemployment Rate": 19.507,
-                "Balance of Trade": -16395139537.0,
+                "Unemployment Rate": 5.372,
+                "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 615907903369.408,
-                "GDP growth (annual %)": 3.191043886
+                "FX Reserves": 2376588606.905187,
+                "GDP growth (annual %)": 2.054130962
             },
             "2009": {
-                "Inflation": 7.215314136,
-                "Index Price": 19444.4,
-                "Unemployment Rate": 20.512,
-                "Balance of Trade": -7863255558.0,
+                "Inflation": 3.521262272,
+                "Index Price": "NaN",
+                "Unemployment Rate": 5.463,
+                "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 715917691478.205,
-                "GDP growth (annual %)": -1.538089135
+                "FX Reserves": 3806945666.9938445,
+                "GDP growth (annual %)": 8.587260426
             },
             "2010": {
-                "Inflation": 4.089729895,
-                "Index Price": 24996.97,
-                "Unemployment Rate": 23.181,
-                "Balance of Trade": -5421631418.0,
+                "Inflation": 1.4910237,
+                "Index Price": "NaN",
+                "Unemployment Rate": 5.585,
+                "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 792148816578.2555,
-                "GDP growth (annual %)": 3.039732881
+                "FX Reserves": 3275203330.818127,
+                "GDP growth (annual %)": 4.630818432
             },
             "2011": {
-                "Inflation": 4.99926697,
-                "Index Price": 28639.4,
-                "Unemployment Rate": 21.416,
-                "Balance of Trade": -9254146536.0,
+                "Inflation": 1.194475724,
+                "Index Price": "NaN",
+                "Unemployment Rate": 5.551,
+                "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 881247762934.6252,
-                "GDP growth (annual %)": 3.168556279
+                "FX Reserves": 2793175459.1188297,
+                "GDP growth (annual %)": 4.194615337
             },
             "2012": {
-                "Inflation": 5.724657917,
-                "Index Price": 28469.81,
-                "Unemployment Rate": 21.786,
-                "Balance of Trade": -20346176600.0,
+                "Inflation": 5.478295943,
+                "Index Price": "NaN",
+                "Unemployment Rate": 5.52,
+                "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 916314869011.6874,
-                "GDP growth (annual %)": 2.396232385
+                "FX Reserves": 2854485489.9747295,
+                "GDP growth (annual %)": 5.053761254
             },
             "2013": {
-                "Inflation": 5.784469097,
-                "Index Price": 34795.5,
-                "Unemployment Rate": 22.038,
-                "Balance of Trade": -21400789699.0,
+                "Inflation": 6.98879342,
+                "Index Price": "NaN",
+                "Unemployment Rate": 5.56,
+                "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 898600641414.5826,
-                "GDP growth (annual %)": 2.485468008
+                "FX Reserves": 3500960303.32111,
+                "GDP growth (annual %)": -36.3919771
             },
             "2014": {
-                "Inflation": 6.129837703,
-                "Index Price": 41482.39,
-                "Unemployment Rate": 22.606,
-                "Balance of Trade": -18344938660.0,
+                "Inflation": 14.89868418,
+                "Index Price": "NaN",
+                "Unemployment Rate": 5.685,
+                "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 887996249061.3644,
-                "GDP growth (annual %)": 1.413826452
+                "FX Reserves": 4692413156.668251,
+                "GDP growth (annual %)": 0.081070515
             },
             "2015": {
-                "Inflation": 4.540642277,
-                "Index Price": 43969.96,
-                "Unemployment Rate": 22.869,
-                "Balance of Trade": -14944186632.0,
-                "Government Debt-to-GDP": 48.68384243,
-                "FX Reserves": 829524455681.6443,
-                "GDP growth (annual %)": 1.321862237
+                "Inflation": 1.402970171,
+                "Index Price": 258.08,
+                "Unemployment Rate": 5.871,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 3864984528.606613,
+                "GDP growth (annual %)": 4.33712103
             },
             "2016": {
-                "Inflation": 6.571396422,
-                "Index Price": 45797.3,
-                "Unemployment Rate": 24.023,
-                "Balance of Trade": -8521994957.0,
-                "Government Debt-to-GDP": 49.72626333,
-                "FX Reserves": 852899804611.7694,
-                "GDP growth (annual %)": 0.664552308
+                "Inflation": 4.945432761,
+                "Index Price": 303.93,
+                "Unemployment Rate": 5.904,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 4334953436.526886,
+                "GDP growth (annual %)": 4.750316841
             },
             "2017": {
-                "Inflation": 5.184246648,
-                "Index Price": 43901.99,
-                "Unemployment Rate": 23.992,
-                "Balance of Trade": -9056996806.0,
-                "Government Debt-to-GDP": 51.88529271,
-                "FX Reserves": 916944201037.155,
-                "GDP growth (annual %)": 1.157946952
+                "Inflation": 4.180723319,
+                "Index Price": 278.36,
+                "Unemployment Rate": 5.969,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 6557029555.369752,
+                "GDP growth (annual %)": 4.527278213
             },
             "2018": {
-                "Inflation": 4.517165228,
-                "Index Price": 52533.04,
-                "Unemployment Rate": 24.218,
-                "Balance of Trade": -12159926618.0,
-                "Government Debt-to-GDP": 54.76275256,
-                "FX Reserves": 933560166601.6177,
-                "GDP growth (annual %)": 1.556783847
+                "Inflation": 1.61215687,
+                "Index Price": 243.06,
+                "Unemployment Rate": 5.896,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 6540396604.237622,
+                "GDP growth (annual %)": 3.789443593
             },
             "2019": {
-                "Inflation": 4.12024587,
-                "Index Price": 46726.59,
-                "Unemployment Rate": 25.538,
-                "Balance of Trade": -10200410539.0,
-                "Government Debt-to-GDP": 60.71389496,
-                "FX Reserves": 995274146744.1183,
-                "GDP growth (annual %)": 0.259935577
+                "Inflation": 2.685373553,
+                "Index Price": 172.24,
+                "Unemployment Rate": 5.978,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 6332653721.84222,
+                "GDP growth (annual %)": 3.1
             },
             "2020": {
-                "Inflation": 3.210035975,
-                "Index Price": 50816.05,
-                "Unemployment Rate": 24.339,
-                "Balance of Trade": 6771399116.0,
-                "Government Debt-to-GDP": 72.09646895,
-                "FX Reserves": 994417242159.117,
-                "GDP growth (annual %)": -5.963358184
+                "Inflation": 1.710156595,
+                "Index Price": 159.24,
+                "Unemployment Rate": 6.556,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 7818966982.813567,
+                "GDP growth (annual %)": 0.899999997
             },
             "2021": {
-                "Inflation": 4.611672178,
-                "Index Price": 54379.58,
-                "Unemployment Rate": 28.77,
-                "Balance of Trade": 15700969351.0,
-                "Government Debt-to-GDP": 70.52585354,
-                "FX Reserves": 1041213758096.2596,
-                "GDP growth (annual %)": 4.703062065
+                "Inflation": 4.259364175,
+                "Index Price": 145.37,
+                "Unemployment Rate": 6.676,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 8747208976.14357,
+                "GDP growth (annual %)": 0.982919996
             },
             "2022": {
-                "Inflation": 7.039726613,
-                "Index Price": 67052.4,
-                "Unemployment Rate": 28.838,
-                "Balance of Trade": -1877973945.0,
-                "Government Debt-to-GDP": 73.00317012,
-                "FX Reserves": 1094650252254.7697,
-                "GDP growth (annual %)": 1.91040617
+                "Inflation": 5.583167352,
+                "Index Price": 202.28,
+                "Unemployment Rate": 6.337,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 6768310792.788259,
+                "GDP growth (annual %)": 0.502110003
             },
             "2023": {
-                "Inflation": 6.073908532,
-                "Index Price": 66955.47,
-                "Unemployment Rate": 27.988,
-                "Balance of Trade": -6143218091.0,
+                "Inflation": 2.979138526,
+                "Index Price": 206.34,
+                "Unemployment Rate": 6.286,
+                "Balance of Trade": "NaN",
                 "Government Debt-to-GDP": "NaN",
-                "FX Reserves": 1129694664804.5679,
-                "GDP growth (annual %)": 0.601662303
+                "FX Reserves": "NaN",
+                "GDP growth (annual %)": 0.870251451
             }
         }
     },
@@ -9234,6 +9234,155 @@
                 "Government Debt-to-GDP": "NaN",
                 "FX Reserves": "NaN",
                 "GDP growth (annual %)": 2.960180013
+            }
+        }
+    },
+    "Congo": {
+        "Currency": "XAF",
+        "Economic Data": {
+            "2008": {
+                "Inflation": 4.95875092,
+                "Index Price": "NaN",
+                "Unemployment Rate": 19.954,
+                "Balance of Trade": 869277946.2,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 3881458051.0,
+                "GDP growth (annual %)": 6.306375956
+            },
+            "2009": {
+                "Inflation": 4.415003748,
+                "Index Price": 19444.4,
+                "Unemployment Rate": 19.854,
+                "Balance of Trade": -1371282200.0,
+                "Government Debt-to-GDP": 60.22694172,
+                "FX Reserves": 3806250384.0,
+                "GDP growth (annual %)": 11.63728886
+            },
+            "2010": {
+                "Inflation": 0.391525011,
+                "Index Price": 24996.97,
+                "Unemployment Rate": 19.379,
+                "Balance of Trade": 901208914.6,
+                "Government Debt-to-GDP": 25.48268447,
+                "FX Reserves": 4446850566.0,
+                "GDP growth (annual %)": 9.931265431
+            },
+            "2011": {
+                "Inflation": 1.759587043,
+                "Index Price": 28639.4,
+                "Unemployment Rate": 19.51,
+                "Balance of Trade": 2073140263.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 5641136196.0,
+                "GDP growth (annual %)": 2.205919363
+            },
+            "2012": {
+                "Inflation": 5.010187731,
+                "Index Price": 28469.81,
+                "Unemployment Rate": 19.573,
+                "Balance of Trade": 2421258746.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 5549563315.0,
+                "GDP growth (annual %)": 9.947153143
+            },
+            "2013": {
+                "Inflation": 4.631616197,
+                "Index Price": 34795.5,
+                "Unemployment Rate": 19.902,
+                "Balance of Trade": 1936952275.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 5245011451.0,
+                "GDP growth (annual %)": -0.712434452
+            },
+            "2014": {
+                "Inflation": 0.912139545,
+                "Index Price": 41482.39,
+                "Unemployment Rate": 19.781,
+                "Balance of Trade": 679779275.5,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 4926098059.0,
+                "GDP growth (annual %)": 6.646065409
+            },
+            "2015": {
+                "Inflation": 3.169097968,
+                "Index Price": 43969.96,
+                "Unemployment Rate": 20.2,
+                "Balance of Trade": -4630571434.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 2221497219.0,
+                "GDP growth (annual %)": 0.415193061
+            },
+            "2016": {
+                "Inflation": 3.190561797,
+                "Index Price": 45797.3,
+                "Unemployment Rate": 20.524,
+                "Balance of Trade": -3596012164.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 714352000.8,
+                "GDP growth (annual %)": -8.685243439
+            },
+            "2017": {
+                "Inflation": 0.450063823,
+                "Index Price": 43901.99,
+                "Unemployment Rate": 20.887,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 379984138.8,
+                "GDP growth (annual %)": -5.594773719
+            },
+            "2018": {
+                "Inflation": 1.152778964,
+                "Index Price": 52533.04,
+                "Unemployment Rate": 20.938,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 423617388.3,
+                "GDP growth (annual %)": -2.304317801
+            },
+            "2019": {
+                "Inflation": 2.206073058,
+                "Index Price": 46726.59,
+                "Unemployment Rate": 20.608,
+                "Balance of Trade": 1632374163.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 988316008.0,
+                "GDP growth (annual %)": 1.124477074
+            },
+            "2020": {
+                "Inflation": 1.795371471,
+                "Index Price": 50816.05,
+                "Unemployment Rate": 22.373,
+                "Balance of Trade": 1440630928.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 1140500575.0,
+                "GDP growth (annual %)": -6.267777996
+            },
+            "2021": {
+                "Inflation": 1.715642755,
+                "Index Price": 54379.58,
+                "Unemployment Rate": 22.077,
+                "Balance of Trade": 1715906879.0,
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 828560334.6,
+                "GDP growth (annual %)": 1.01507338
+            },
+            "2022": {
+                "Inflation": 3.043443347,
+                "Index Price": 67052.4,
+                "Unemployment Rate": 20.261,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 835649477.0,
+                "GDP growth (annual %)": 1.475356132
+            },
+            "2023": {
+                "Inflation": 4.301745636,
+                "Index Price": 66955.47,
+                "Unemployment Rate": 20.054,
+                "Balance of Trade": "NaN",
+                "Government Debt-to-GDP": "NaN",
+                "FX Reserves": 715391052.4,
+                "GDP growth (annual %)": 1.906864263
             }
         }
     },
